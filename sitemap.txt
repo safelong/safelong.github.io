@@ -1,0 +1,8 @@
+---
+title : 博客地图
+permalink: sitemap.txt
+---
+{% for page in site.pages %}
+http://{{ site.meta.blog.url }}{{ page.url }}{% endfor %}
+{% for post in site.posts %}
+http://{{ site.meta.blog.url }}{{ post.url }}{% endfor %}

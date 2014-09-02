@@ -1,32 +1,44 @@
 ---
-layout: default_index
+layout: blog
+index: true
 ---
 
+{% for post in paginator.posts %}
+<div class="posts">
+    <section class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
+            <p class="post-meta">
+				<i class="fa fa-calendar">&nbsp;</i>
+				{{ post.date | date: "%Y" }}年{{ post.date | date: "%m" }}月{{ post.date | date: "%d" }}日
+				<i class="space"></i>
+				<i class="fa fa-tags">&nbsp;</i>
+				<a class="post-categorybut " href="/page/category.html#{{ post.categories }}">{{ post.categories }}</a>
+            </p>
+        </header>
 
-
-
-
-
-<div id="main_content">
-
-	<h1>最新文章</h1>
-
-	<ul class="index_list">
-	    {% for post in site.posts %}
-	        <li>
-	        	<a href="{{ site.url }}{{ post.url }}">
-	        		<span>{{ post.title }}</span>	
-	        		<span class="index_list_date"><span> - - - - </span>{{ post.date | date_to_string }}</span>
-	        	</a>	
-	        </li>
-	    {% endfor %}
-	</ul>
-
+        <div class="post-description">
+            {{ post.content | split:'<!-- more -->'| first }}
+            <a href="{{ post.url }}" class="post-categorybut-readall">阅读全文 >></a>
+        </div>
+    </section>
 </div>
+{% endfor %}
 
+<div class="pagination">
+    {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+    <a class="pagination-item newer" href="/">上一页</a>
+    {% else %}
+    <a class="pagination-item newer" href="/page/{{paginator.previous_page}}">上一页</a>
+    {% endif %}
+    {% else %}
+    <span class="pagination-item newer">上一页</span>
+    {% endif %}
 
-
-
-
-
-
+    {% if paginator.next_page %}
+    <a class="pagination-item older" href="/page/{{paginator.next_page}}">下一页</a>
+    {% else %}
+    <span class="pagination-item older">下一页</span>
+    {% endif %}
+</div>

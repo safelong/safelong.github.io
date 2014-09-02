@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="{{ site.meta.blog.title }} - {{ site.meta.blog.speak }}, {{ site.meta.blog.description }}">
+	{% if page.index == true %}
+	<meta name="keywords" content="{{ site.meta.blog.title }} - {{ site.meta.blog.speak }}, {{ site.meta.blog.title }}, {{ site.meta.author.name }}, {{ site.meta.blog.speak }}">
+	<meta name="baidu-site-verification" content="{{ site.meta.blog.baidukey }}" />
+	{% else %}
+	<meta name="keywords" content="{{ page.title }} - {{ site.meta.blog.title }}, {{ page.title }}, {{ site.meta.blog.title }}">
+	{% endif %}
+	<meta name="author" content="{{ site.meta.author.name }}">
+	<link href="{{ site.meta.blog.favicon }}" rel="icon" type="image/x-icon">
+	<link rel="canonical" href="http://{{ site.meta.blog.url }}{{ page.url }}">
+	{% if page.index == true %}
+	<title>{% if page.title %}{{ page.title }}{% else %}{{ site.meta.blog.title }}{% endif %}{% if site.meta.blog.speak %} - {{ site.meta.blog.speak }}{% endif %}</title>
+	{% else %}
+	<title>{% if page.title %}{{ page.title }}{% else %}{{ site.meta.blog.title }}{% endif %} - {{ site.meta.blog.name }}</title>
+	{% endif %}
+	<link rel="stylesheet" href="/res/css/code.css">
+	<link rel="stylesheet" href="/res/css/min/pure-min.css">
+	<!-- IE 8 -->
+	<link rel="stylesheet" href="/res/css/JekyllPure.css">
+	<link rel="stylesheet" href="/res/css/min/main-grid.css">
+	<link href="/res/css/min/font-awesome.min.css" rel="stylesheet">
+	<!-- IE 7 -->
+	<link rel="stylesheet" href="/res/css/min/font-awesome-ie7.css">
+	<script src="/res/js/min/jquery-1.11.0.min.js"></script>
+	<!-- Baidu TongJi -->
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?1be8f73eca2e0d024415c4c2f3e64045";
+			var s = document.getElementsByTagName("script")[0]; 
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</head>
+
+<body>
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1  pure-u-med-1-4">
+        <div class="left">
+            <header id="header" class="inner pure-u-4-5">
+                <div class="profilepic">
+                    <a href="/">
+						<img src="{{ site.meta.author.icon }}" alt="logo" title="首页">
+                    </a>
+                </div>
+                <h1>
+					<a href="/" title="首页">{{ site.meta.blog.name }}</a>
+				</h1>
+                <h2>{{ site.meta.blog.description }}</h2>
+                <div id="rem">
+                    <nav id="main-nav">
+                        <ul class="main-navigation">
+                            <li><a id="nav-timing" href="/page/timing.html" title="时间轴">时间轴</a></li>
+                            <li><a id="nav-category" href="/page/category.html" title="文章分类">文章分类</a></li>
+							<li><a id="nav-life" href="https://github.com/pexcn/life/blob/life/index.md" target="_blank" title="日志">日志</a></li>
+							<li><a id="nav-about" href="/page/about.html" title="关于">关于</a></li>
+                        </ul>
+                    </nav>
+                    <nav id="sub-nav">
+                        <div class="social">
+                            <a class="weibo " href="{{ site.meta.author.weibo }}" title="新浪微博" target="_blank"><i class="fa fa-weibo"></i></a>
+                            <a class="github" href="{{ site.meta.author.github }}" title="GitHub" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+                            <a class="rss" href="{{ site.meta.blog.rss }}" title="RSS订阅"><i class="fa fa-rss"></i></a>
+                        </div>
+                    </nav>
+                </div>
+                <div id="toc"></div>
+				
+				<div id="license">
+					<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/"
+					   target="_blank"
+					   title="本站所有作品采用：&#10;知识共享《署名 非商业性使用 相同方式共享 3.0》&#10;进行许可" >
+						<img alt="License"  src="/res/img/license.png" />
+					</a>	
+				</div>
+				
+            </header>
+        </div>
+    </div>
+	
+    <div class="container pure-u-1 pure-u-med-3-4">
+		{{ content }}
+		{% if page.index == true %}
+		<div class="footer">
+			<p style="font-size:100%">Copyright &copy; {{ site.time | date: "%Y" }} <a href="http://{{ site.meta.blog.url }}/" title="首页">{{ site.meta.author.name }}</a> - Powered by Jekyll<br />
+				Theme Modified From <a href="http://liyouhai.com/project/opensource-jekyll-theme-jekyllpure.html" title="JekyllPure主题" target="_blank">JekyllPure</a>	
+				<script src="/res/js/min/nprogress.min.js"></script>
+				<script src="/res/js/index.js"></script>
+			</p>
+		</div>
+		{% endif %}
+		{% if page.post == true %}
+		<div class="footer">
+			<p style="font-size:100%">Copyright &copy; {{ site.time | date: "%Y" }} <a href="http://{{ site.meta.blog.url }}/" title="首页">{{ site.meta.author.name }}</a> - Powered by Jekyll<br />
+				Theme Modified From <a href="http://liyouhai.com/project/opensource-jekyll-theme-jekyllpure.html" title="JekyllPure主题" target="_blank">JekyllPure</a>	
+				<script src="/res/js/min/nprogress.min.js"></script>
+				<script src="/res/js/index.js"></script>
+			</p>
+		</div>
+		{% endif %}
+    </div>
+</div>
+<div class="topfade">
+	<a href="javascript:;" title="返回顶部"></a>
+</div>
+	<!-- Fancybox -->
+	<link rel="stylesheet" href="/res/fancybox/jquery.fancybox.css" media="all">
+	<script type="text/javascript" src="/res/fancybox/jquery.fancybox.pack.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("p img").each(function() {
+				var strA = "<a id='yourid' href='" + this.src + "'></a>";
+				$(this).wrapAll(strA);
+			});
+		});
+		$("#yourid").fancybox({
+			padding: 7,
+			openEffect: 'fade',
+			closeEffect: 'fade',
+			scrolling: 'no',
+		});
+	</script>
+	{% if page.post == true %}
+		{% if site.meta.baidushare != false %}
+		<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":["qzone","tsina","weixin","sqq"],"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+		{% endif %}
+		{% if page.duoshuo != false %}
+		<script type="text/javascript">
+			var duoshuoQuery = {short_name:"pexcn"};
+			(function() {
+				var ds = document.createElement('script');
+				ds.type = 'text/javascript';ds.async = true;
+				ds.src = 'http://static.duoshuo.com/embed.js';
+				ds.charset = 'UTF-8';
+				(document.getElementsByTagName('head')[0] 
+				|| document.getElementsByTagName('body')[0]).appendChild(ds);
+			})();
+		</script>
+		{% endif %}
+	{% endif %}
+</body>
+</html>
