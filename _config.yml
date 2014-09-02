@@ -5,7 +5,7 @@ name: safelong
 author: safelong
 qq: 37127882
 email: lzc2125@163.com
-duoshuo: 89ao
+#duoshuo: 89ao
 #beian: 浙ICP备12026616号
 #cnzz: 119959
 weibo: safelong
@@ -13,6 +13,7 @@ github: safelong
 pygments: true
 safe: true
 paginate: 20
+truncate: 300
 about: "攻城狮一头，目前从事web项目的开发。     
 5年开发经验，2年管理经验。
 管理的同时，也兼顾开发。
