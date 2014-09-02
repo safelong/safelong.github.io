@@ -20,4 +20,6 @@ comments: no
 GitHub : [http://github.com/{{ site.github }}](http://github.com/{{ site.github }})
 
 ----
-[url=http://weibo.com/u/1040804112?s=6uyXnP][img]http://service.t.sina.com.cn/widget/qmd/1040804112/148917a8/1.png[/img][/url]
+{% if site.weibo %}
+[![新浪微博](http://service.t.sina.com.cn/widget/qmd/{{ site.weibo }}/148917a8/1.png)](http://weibo.com/u/{{ site.weibo }})
+{% endif %}
