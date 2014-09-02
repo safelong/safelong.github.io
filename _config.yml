@@ -13,7 +13,7 @@ github: safelong
 pygments: true
 safe: true
 paginate: 20
-truncate: 300
+truncate: 20
 about: "攻城狮一头，目前从事web项目的开发。     
 5年开发经验，2年管理经验。
 管理的同时，也兼顾开发。
