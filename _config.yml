@@ -1,33 +1,19 @@
-markdown: rdiscount #kramdown redcarpet
-
-rdiscount:
-  extensions: [  "autolink", ]
-markdown_ext:  markdown,mkd,mkdn,md
-
-highlighter: pygments
-
-permalink: /blog/:year/:month/:day/:title.html
-paginate: 5
-paginate_path: "page/:num"
-encoding: "utf-8"
-future: true
-lsi: true
-safe: false
-
-meta:
-    blog:
-        name: Blog Name                  #博客名称
-        url: Blog URL                    #博客地址
-        description: Blog Description    #二级标题
-        speak: Index Title Tail          #标题后面的文字
-        title: Blog Title                #博客标题
-        favicon: /res/img/favicon.ico    #小图标的相对路径
-        rss: /page/rss.xml               #RSS页面
-        baidukey: #Key                   #百度站长验证的key
-    author:
-        name: Your Name                  #作者名称
-        github: Your GitHub URL          #github地址
-        weibo: Your Weibo URL            #微博地址
-        email: Your Email                #邮箱
-        icon: /res/img/icon.jpg           #博客头像
-    baidushare: true                      #百度分享
+markdown: rdiscount
+permalink: /:title/
+url: http://89ao.info
+name: 89Ao.info
+author: AoGang
+qq: 103230005
+email: 89ao@live.com
+duoshuo: 89ao
+#beian: 浙ICP备12026616号
+#cnzz: 119959
+weibo: 2067815867
+github: 89ao
+pygments: true
+safe: true
+paginate: 20
+about: "攻城狮一头，目前从事Linux的相关运维。	
+热爱Linux，开源爱好者，喜欢虚拟化，github等。		
+电脑洁癖与性能癖。  	
+偶尔微博，偶尔wow。"

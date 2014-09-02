@@ -1,44 +1,56 @@
 ---
-layout: blog
-index: true
+title: 89Ao's Homepage
+layout: page
 ---
 
+<ul class="listing">
 {% for post in paginator.posts %}
-<div class="posts">
-    <section class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h2>
-            <p class="post-meta">
-				<i class="fa fa-calendar">&nbsp;</i>
-				{{ post.date | date: "%Y" }}年{{ post.date | date: "%m" }}月{{ post.date | date: "%d" }}日
-				<i class="space"></i>
-				<i class="fa fa-tags">&nbsp;</i>
-				<a class="post-categorybut " href="/page/category.html#{{ post.categories }}">{{ post.categories }}</a>
-            </p>
-        </header>
-
-        <div class="post-description">
-            {{ post.content | split:'<!-- more -->'| first }}
-            <a href="{{ post.url }}" class="post-categorybut-readall">阅读全文 >></a>
-        </div>
-    </section>
-</div>
+  {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
+  {% if year != y %}
+    {% assign year = y %}
+    <li class="listing-seperator">{{ y }}</li>
+  {% endif %}
+  <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    {% if site.truncate %}
+    <p>{{ post.content | strip_html | truncate: site.truncate }}</p>
+    {% endif%}
+  </li>
 {% endfor %}
+</ul>
 
-<div class="pagination">
-    {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-    <a class="pagination-item newer" href="/">上一页</a>
-    {% else %}
-    <a class="pagination-item newer" href="/page/{{paginator.previous_page}}">上一页</a>
-    {% endif %}
-    {% else %}
-    <span class="pagination-item newer">上一页</span>
-    {% endif %}
+<div id="post-pagination" class="paginator">
 
-    {% if paginator.next_page %}
-    <a class="pagination-item older" href="/page/{{paginator.next_page}}">下一页</a>
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+    <a href="/"><前页</a>
     {% else %}
-    <span class="pagination-item older">下一页</span>
+    <a href="/page{{paginator.previous_page}}">&lt;前页</a>
     {% endif %}
+  {% else %}
+    <span class="previous disabled">&lt;前页</span>
+  {% endif %}
+
+      {% if paginator.page == 1 %}
+      <span class="current-page">1</span>
+      {% else %}
+      <a href="/">1</a>
+      {% endif %}
+
+    {% for count in (2..paginator.total_pages) %}
+      {% if count == paginator.page %}
+      <span class="current-page">{{count}}</span>
+      {% else %}
+      <a href="/page{{count}}">{{count}}</a>
+      {% endif %}
+    {% endfor %}
+
+  {% if paginator.next_page %}
+    <a class="next" href="/page{{paginator.next_page}}">后页&gt;</a>
+  {% else %}
+    <span class="next disabled" >后页&gt;</span>
+  {% endif %}
+  (共{{ paginator.total_posts }}篇)
 </div>
+

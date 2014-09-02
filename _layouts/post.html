@@ -1,45 +1,59 @@
 ---
-layout: blog
-post: true
+layout: default
 ---
+<section class="meta">
+<span class="time">
+  <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date:"%Y-%m-%d" }}</time>
+</span>
+{% if page.categories.size != 0 %}
+ | 
+<span class="categories">
+  categories
+  {% for cat in page.categories %}
+  <a href="/categories/#{{ cat }}" title="{{ cat }}">{{ cat }}</a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+{% if page.tags.size != 0 %}
+ | 
+<span class="tags">
+  tags
+  {% for tag in page.tags %}
+  <a href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+</section>
+<section class="post">
+{{ content }}
+</section>
+<section align="right">
+<br/>
+<span>
+	<a {% if page.previous %} href="{{ page.previous.url }}" class="pageNav"{% endif %} {% unless page.previous %} class="pageNavInvalid" {% endunless %} >上一篇</a>
+	&nbsp;&nbsp;&nbsp;
+	<a {% if page.next %} href="{{ page.next.url }}" class="pageNav"{% endif %} {% unless page.next %} class="pageNavInvalid" {% endunless %} >下一篇</a>
+</span>
+</section>
+{% include comments.md %}
 
-<div class="qrcodeTable"></div>
-
-<header class="post-header">
-	<h2 class="post-title"><a href="{{ page.url }}">{{ page.title }}</a></h2>
-	<p class="post-meta">
-		<i class="fa fa-calendar">&nbsp;</i>
-		{{ page.date | date: "%Y" }}年{{ page.date | date: "%m" }}月{{ page.date | date: "%d" }}日
-		<i class="space"></i>
-		<i class="fa fa-tags">&nbsp;</i>
-		<a class="post-categorybut" href="/page/category.html#{{ post.categories }}">{{ page.categories }}</a>
-	</p>
-</header>
-
-<div class="main-pagination">
-    {{ content }}
-	{% if site.meta.baidushare != false %}
-	<div class="bdsharebuttonbox">
-		<a href="#" class="bds_more" data-cmd="more"></a>
-		<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-		<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-	</div>
-	{% endif %}
-    <div class="pagination">
-        {% if page.previous %}
-        <a class="pagination-item newer" href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }} "><i class="fa fa-mail-reply"></i>&nbsp;{{ page.previous.title }}</a>
-        {% else %}
-        <span class="pagination-item newer">上一篇&nbsp;<i class="fa fa-chain-broken"></i></span>
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            {% if page.previous %}
+        url = '{{ site.url }}{{ page.previous.url }}';
         {% endif %}
-        {% if page.next %}
-        <a class="pagination-item older" href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }}&nbsp;<i class="fa fa-mail-forward"></i></a>
-        {% else %}
-        <span class="pagination-item older">下一篇&nbsp;<i class="fa fa-chain-broken"></i></span>
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            {% if page.next %}
+        url = '{{ site.url }}{{ page.next.url }}';
         {% endif %}
-    </div>
-	<script src="/res/js/min/jquery.toc.min.js" ></script>
-	<script src="/res/js/min/jquery.qrcode.min.js" ></script>
-	{% if page.duoshuo != false %}
-	<div class="ds-thread" data-title="{{ page.title }}" data-thread-key="{{ page.title }}" data-url="	http://{{ site.meta.blog.url }}{{ page.url }}"></div>
-	{% endif %}
-</div>
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
