@@ -9,9 +9,31 @@
 * |\.|._)._)
 * --------------------------------- */
 
+/*
 @import url(http://fonts.googleapis.com/css?family=Galdeano);
 @import url(http://fonts.googleapis.com/css?family=Electrolize);
 @import url(http://fonts.googleapis.com/css?family=Cuprum);
+*/
+@font-face {
+  font-family: 'Galdeano';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Galdeano Regular'), local('Galdeano-Regular'), url(http://fonts.gstatic.com/s/galdeano/v6/XWkZhyfrNgo9X-giTt_ZffesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Electrolize';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Electrolize'), local('Electrolize-Regular'), url(http://fonts.gstatic.com/s/electrolize/v5/DDy9sgU2U7S4xAwH5thnJ4bN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Cuprum';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cuprum'), local('Cuprum-Regular'), url(http://fonts.gstatic.com/s/cuprum/v7/sp1_LTSOMWWV0K5VTuZzvQ.woff) format('woff');
+}
+
 body{font-size:14px;word-spacing:1px;
 	margin-left:auto;
 margin-right:auto;
