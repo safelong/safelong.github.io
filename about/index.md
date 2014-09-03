@@ -5,6 +5,7 @@ comments: no
 ---
 
 {{ site.about }}
+
 <p><a href="http://safelong.github.io/resume/index.html">简历页</a></p>
 ----
 
