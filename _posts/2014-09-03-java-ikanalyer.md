@@ -1,6 +1,7 @@
 ---
 layout: post
 title : 中文分词器IKAnalyzer简单说明
+thread: 5
 category: java
 avatarimg: ""
 tags : [ java ,技术]

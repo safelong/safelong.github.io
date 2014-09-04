@@ -1,6 +1,7 @@
 ---
 layout: post
 title : 五一长假后的泰山两日游
+thread: 1
 category: 游记
 avatarimg: ""
 tags : [ 泰山 ,旅游]

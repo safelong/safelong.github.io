@@ -1,6 +1,7 @@
 ---
 layout: post
 title : 谷歌Oauth认证操作日历
+thread: 3
 category: java
 avatarimg: ""
 tags : [ java ,技术]
@@ -23,16 +24,17 @@ OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们
 * 3.在project的Credentials里面，Creat new Client ID，选择web application,	
     设定好Redirect URIs，这是验证成功后跳转的地址			
 
-##所需要的jar包							
-*		google-oauth-client-1.17.0-rc.jar					
-*		google-http-client-1.17.0-rc.jar					
-*		google-api-client-1.17.0-rc.jar					
-*		google-oauth-client-java6-1.17.0-rc.jar					
-*		google-oauth-client-jetty-1.17.0-rc.jar					
-*		google-http-client-jackson2-1.17.0-rc.jar					
-*		google-api-services-oauth2-v2-rev60-1.17.0-rc.jar					
-*		google-api-services-calendar-v3-rev72-1.17.0-rc.jar	(根据要操作的应用选择，以下例子是操作谷歌日历)				
-*		jackson-core-2.3.0.jar					
+##所需要的jar包	
+						
+* google-oauth-client-1.17.0-rc.jar					
+* google-http-client-1.17.0-rc.jar					
+* google-api-client-1.17.0-rc.jar					
+* google-oauth-client-java6-1.17.0-rc.jar					
+* google-oauth-client-jetty-1.17.0-rc.jar					
+* google-http-client-jackson2-1.17.0-rc.jar					
+* google-api-services-oauth2-v2-rev60-1.17.0-rc.jar					
+* google-api-services-calendar-v3-rev72-1.17.0-rc.jar	(根据要操作的应用选择，以下例子是操作谷歌日历)				
+* jackson-core-2.3.0.jar					
 
 ##Oauth认证，操作谷歌日历举例
 	  private static final String APPLICATION_NAME = "xxx"; 		
