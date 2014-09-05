@@ -9,9 +9,9 @@ tags : [ java ,技术,数据库]
 
 <table class="table table-bordered table-striped table-condensed">
    <tr>
-      <th>Mysql</th>
-      <th>Oracle</th>
-      <th>Java</th>
+      <th class="span2">Mysql</th>
+      <th class="span2">Oracle</th>
+      <th class="span2">Java</th>
    </tr>
    <tr>
       <td>BIGINT</td>
