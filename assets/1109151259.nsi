@@ -14,7 +14,7 @@
 ; ∫Í∂®“Â
 !define STR_AppName "CuteFoto"
 !define STR_Version "2.2.240"
-!define STR_Publisher "Yonsm.NET"
+!define STR_Publisher "http://safelong.github.io/"
 !define STR_HomepageUrl "http://Yonsm.zj.com"
 
 !define REG_AppPath "Software\Microsoft\Windows\CurrentVersion\App Paths\${STR_AppName}.exe"
