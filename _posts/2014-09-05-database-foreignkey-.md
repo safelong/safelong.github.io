@@ -29,7 +29,7 @@ tags : [ 数据库 ,技术]
 	WHERE
 	    referenced_table_name IS NOT NULL;
 
-二.查找某个库的所有外键
+###二.查找某个库的所有外键
 
 	SELECT
 	    CONCAT(table_name, '.', column_name) AS 'foreign key',
@@ -41,7 +41,7 @@ tags : [ 数据库 ,技术]
 	    referenced_table_name IS NOT NULL
 	    AND table_schema = 'your_database_name';
 
-三.查找库里某个表的所有外键
+###三.查找库里某个表的所有外键
 
 	SELECT *
 	FROM
@@ -58,3 +58,11 @@ tags : [ 数据库 ,技术]
 * 1.删除子表所有数据，然后修改目标结构
 * 2.删除外键关联，修改母表结构（当然这个办法了）
 
+***
+	
+##删除外键方法
+###一.单独删除某个表的外键
+
+	ALTER TABLE your_table_name DROP FOREIGN KEY FK_name
+
+###二.删除某个库的所有外键
