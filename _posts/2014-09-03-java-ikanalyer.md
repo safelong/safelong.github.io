@@ -5,6 +5,8 @@ thread: 5
 category: java
 avatarimg: ""
 tags : [ java ,技术]
+keywords: 中文分词器,  IKAnalyzer,Lucene, java
+description: java中文分词器IKAnalyzer简单说明
 ---
 
 ##IKAnalyzer的介绍		

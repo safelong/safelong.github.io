@@ -5,6 +5,8 @@ thread: 1
 category: 游记
 avatarimg: ""
 tags : [ 泰山 ,旅游]
+keywords: 泰山, 旅游, 攻略, 游记, 岱庙, 白云居
+description: 泰山两日游，详细的攻略和游记记录
 ---
 
 

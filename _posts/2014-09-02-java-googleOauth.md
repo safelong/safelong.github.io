@@ -5,6 +5,8 @@ thread: 3
 category: java
 avatarimg: ""
 tags : [ java ,技术]
+keywords: Oauth, 谷歌,google, 日历,java
+description: 谷歌Oauth认证操作日历
 ---
 
 ##Oauth认证				

@@ -5,6 +5,8 @@ thread: 6
 category: 数据库
 avatarimg: ""
 tags : [ 数据库 ,技术]
+keywords: mysql, 外键，information_schema
+description: Mysql中查找所有外键
 ---
 
 今天修改数据库时，碰到有的表不能修改，提示有外键。

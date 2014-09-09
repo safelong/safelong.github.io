@@ -5,6 +5,8 @@ title: 我的博客今天开通了……
 thread: 2
 categories: 日志
 tags: 博客
+keywords: 博客, safelong
+description: 新建博客，开通
 ---
 
 总羡慕别人有个博客。

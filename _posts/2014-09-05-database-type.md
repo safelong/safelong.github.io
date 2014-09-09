@@ -5,6 +5,8 @@ thread: 7
 category: 数据库
 avatarimg: ""
 tags : [ java ,技术,数据库]
+keywords: mysql, oracle, java, 数据类型
+description: Mysql,Oracle,Java数据类型对应
 ---
 
 <table class="table table-bordered table-striped table-condensed">
