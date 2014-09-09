@@ -8,6 +8,7 @@ keywords: java,openfire
 description: openfire源代码编译和问题解决
 ---
 
+##准备源文件
 首先，将下载的源代码压缩包解压出来的 openfire_src 目录 copy 至 eclipse 的 workspace 下面。
 
 
@@ -16,11 +17,11 @@ description: openfire源代码编译和问题解决
 然后把openfire_src\classpth、openfire_src\project修改成Eclipse工程配置文件格式：
 
      openfire_src\.classpath
-
      openfire_src\.project 、
 
 （如果无法修改文件名，copy任一现有项目的文件后修改其内容亦可，或者 cmd 内使用 move 命令修改）。
 
+##导入工程&解决编译问题
 然后打开Eclipse，选择 File –> Import… –> Existing Projects into Workspace  选择 openfire_src 目录导入即可。
 
 
@@ -37,16 +38,12 @@ description: openfire源代码编译和问题解决
 这个主要是因为 openfire 新版本对 bouncycastle 的依赖版本升级到了 1.49。
 
 
-
-
 接下来如果项目编译后产生编译错误，主要是缺少 coherence 相应的包，可从官网下载以下文件（需登录。CSDN 上也有）：
 
      coherence.jar
      coherence-work.jar
 
 [http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html](http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html)
-
-
 
 
 将文件放入 openfire_src\src\plugins\clustering\lib 目录，然后加入 classpath：
@@ -71,7 +68,9 @@ description: openfire源代码编译和问题解决
 
 至此，编译 OK。
 
-然后可以使用 Ant 来生成目标文件：
+
+##生成目标文件
+然后可以使用 **Ant 来生成目标文件**：
 
 ![](/assets/Openfire/Image13.png)
 
@@ -90,7 +89,8 @@ description: openfire源代码编译和问题解决
 
      Can't find bundle for base name openfire_i18n, locale en
 
-最后需要配置启动参数：
+##配置启动参数
+最后需要**配置启动参数**：
 
 选择Run –> Run Configurations… 左边的Java Application，单击右键，选择 New，创建一个，
 
@@ -123,7 +123,7 @@ description: openfire源代码编译和问题解决
 
 
 
-
+***
 ####参考：
 
 * [http://www.micmiu.com/opensource/openfire/openfire-src-config/](http://www.micmiu.com/opensource/openfire/openfire-src-config/)
