@@ -1,7 +1,7 @@
 ---
 layout: post
 title: openfire源代码编译
-thread: 2
+thread: 9
 categories: java
 tags: java,openfire
 keywords: java,openfire
