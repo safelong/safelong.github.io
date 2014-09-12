@@ -3,7 +3,7 @@ layout: post
 title: Spring MVC中各个filter的用法
 thread: 10
 categories: java
-tags: java,spring mvc, filter
+tags: java,springMvc, filter
 keywords: java,spring mvc, filter, CharacterEncodingFilter
 description: Spring MVC中各个filter的用法
 ---
