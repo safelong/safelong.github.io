@@ -4,6 +4,14 @@ layout: default
 comments: no
 ---
 
+<p class="lotus-breadcrub">
+    <a href="{{ site.url }}/index.html" rel="nofollow" rel="nofollow" title="首页">Home</a>
+    <span> &gt; </span>
+    {{ page.title }}
+</p>
+
+<h1 class="lotus-pagetit">About</h1>
+
 {{ site.about }}
 
 <p><a href="http://safelong.github.io/resume/index.html">简历页</a></p>
