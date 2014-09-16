@@ -16,7 +16,7 @@ textile_ext:  "textile"
 
 # Filtering Content
 show_drafts:  null
-limit_posts:  20
+limit_posts:  15
 future:       true
 unpublished:  false
 
@@ -38,8 +38,8 @@ paginate_path: /page:num
 timezone:      null
 
 #站点基础配置
-title: iLotus
-subTitle: Just another Jekyll blog.
+title: SafeLong的大杂烩
+subTitle: 记录工作生活的点点滴滴.
 description: 这是 PIZn 的又一个博客，它是基于 Jekyll 搭建起来的。在这里，不仅仅是用来快速记录工作，学习，生活的一点一滴的地方，更是 PIZn 对 Jekyll 的学习和使用的一次有意义的实践。
 url: 
 feed: /atom.xml
@@ -63,7 +63,7 @@ nav:
     icon: icon-heart
     class: none
   - text: 博客源代码
-    url: https://github.com/pizn/iLotus
+    url: https://github.com/safelong
     icon: icon-github
     class: none
 
