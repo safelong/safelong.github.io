@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 文章归档
+title: 分类
 description: 这是 PIZn 的又一个博客，它是基于 Jekyll 搭建起来的。在这里，不仅仅是用来快速记录工作，学习，生活的一点一滴的地方，更是 PIZn 对 Jekyll 的学习和使用的一次有意义的实践。
 keywords: PIZn, GitHub, Jekyll, Plugins, Works, Archives, Quotes, Violet, css, html, javascript, wordpress, logo, design, geek
 ---
@@ -11,40 +11,34 @@ keywords: PIZn, GitHub, Jekyll, Plugins, Works, Archives, Quotes, Violet, css, h
     {{ page.title }}
 </p>
 
-<h1 class="lotus-pagetit">Archives</h1>
-<article id="archives">
+<h1 class="lotus-pagetit">分类</h1>
 
-{% for post in site.posts  %}
-  {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
-  {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
-
-  {% if forloop.first %}
-    <ul>
-        <li><span>{{this_year}} &nbsp;</span>
-            <ul>
-  {% endif %}
-
-                <li>{{ post.date | date: "%B %e" }} : <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-
-  {% if forloop.last %}
-            </ul>
-        </li>
-    </ul>
-  {% else %}
-    {% if this_year != next_year %}
-            </ul>
-        </li>
-    </ul>
-    <ul>
-          <li><span>{{next_year}} &nbsp;</span>
-            <ul>
-    {% endif %}
-  {% endif %}
-
-
+<div id='tag_cloud'>
+{% for cat in site.categories %}
+<a href="#{{ cat[0] }}" title="{{ cat[0] }}" rel="{{ cat[1].size }}">{{ cat[0] }} ({{ cat[1].size }})</a>
 {% endfor %}
+</div>
 
+<ul class="listing">
+{% for cat in site.categories %}
+  <li class="listing-seperator" id="{{ cat[0] }}">{{ cat[0] }}</li>
+{% for post in cat[1] %}
+  <li class="listing-item">
+  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+  </li>
+{% endfor %}
+{% endfor %}
+</ul>
 
+<script src="/static/js/jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script> 
+<script language="javascript">
+$.fn.tagcloud.defaults = {
+    size: {start: 1, end: 1, unit: 'em'},
+      color: {start: '#f8e0e6', end: '#ff3333'}
+};
 
-
-</article>
+$(function () {
+    $('#tag_cloud a').tagcloud();
+});
+</script>
