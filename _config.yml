@@ -19,6 +19,7 @@ show_drafts:  null
 limit_posts:  15
 future:       true
 unpublished:  false
+truncate: 10%
 
 # Conversion
 markdown:     kramdown
