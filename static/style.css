@@ -968,5 +968,5 @@ pre.prettyprint{
 	margin: 20px 0;
 	line-height: 150%;
 	display: block;
-	vertical-align: middle;
+	text-align:center;
 }
