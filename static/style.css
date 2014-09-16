@@ -952,3 +952,11 @@ pre.prettyprint{
     box-shadow: 0px 4px 4px #e8e8e8;
 }
 
+.listing-item,.listing-seperator{list-style-type:none;}
+.listing-item a{
+	padding:.2em 1em;
+
+}
+
+.listing-item time{color:#999999;}
+.listing-seperator{font-weight:bold;}
