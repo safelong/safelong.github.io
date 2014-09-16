@@ -754,7 +754,7 @@ h1, h2, h3, h4, h5, h6{ font-weight: 500; font-weight: 700\9; color:#333; }
         -moz-column-count: 2;
         -moz-column-gap: 3em;
         -moz-column-rule: #c8c8c8 1px dotted;
-        -webkit-column-count: 2;
+        -webkit-column-count: 1;
         -webkit-column-gap: 3em;
         -webkit-column-rule: #c8c8c8 1px dotted;
         column-count: 2;

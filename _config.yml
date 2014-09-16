@@ -19,7 +19,7 @@ show_drafts:  null
 limit_posts:  15
 future:       true
 unpublished:  false
-truncate: 10
+truncate: 10%
 
 # Conversion
 markdown:     kramdown
@@ -48,7 +48,7 @@ feed: /atom.xml
 #菜单配置
 nav:
   - text: 首页
-    url: /index.html
+    url: /
     icon: icon-home
     class: home
   - text: 文章归档
@@ -60,7 +60,7 @@ nav:
     icon: icon-envelope-alt
     class: none
   - text: 联系我
-    url: http://www.zhanxin.info/contact.html
+    url: 
     icon: icon-heart
     class: none
   - text: 博客源代码
