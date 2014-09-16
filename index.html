@@ -20,6 +20,8 @@ layout: default
     <p itemprop="description">{{ rpost.description }}</p>
     {% endif%}
 {% endfor %}
+
+<!--分页处理 -->
 <div id="post-pagination" class="paginator">
 
   {% if paginator.previous_page %}
