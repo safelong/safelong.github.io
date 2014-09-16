@@ -961,10 +961,12 @@ pre.prettyprint{
 .listing-item time{color:#999999;}
 .h3 time{color:#999999;}
 .listing-seperator{font-weight:bold;}
+
 .paginator {
-font: 14px Arial,Helvetica,sans-serif;
-color: #AAA;
-margin: 20px 0;
-line-height: 150%;
-display: block;
+	font: 14px Arial,Helvetica,sans-serif;
+	color: #AAA;
+	margin: 20px 0;
+	line-height: 150%;
+	display: block;
+	vertical-align: middle;
 }
