@@ -20,7 +20,6 @@ layout: default
     <p itemprop="description">{{ rpost.description }}</p>
     {% endif%}
 {% endfor %}
-</article>
 <div id="post-pagination" class="paginator">
 
   {% if paginator.previous_page %}
@@ -54,6 +53,8 @@ layout: default
   {% endif %}
   (共{{ paginator.total_posts }}篇)
 </div>
+</article>
+
 <section class="lotus-double fn-clear">
     <article class="article article-first">
     <h3>最新文章</h3>
