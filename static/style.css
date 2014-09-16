@@ -423,7 +423,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
     overflow: hidden;
     top: 14px;
 }
-h1, h2, h3, h4, h5, h6{ font-weight: 500; font-weight: 700\9; color:#333; }
+h1, h2, h3, h4, h5, h6{ font-weight: bold; font-weight: 700\9; color:#333; }
 
 .lotus h1, .lotus h2, .lotus h3, .lotus h4, .lotus h5, .lotus h6,
 .lotus-h1, .lotus-h2, .lotus-h3, .lotus-h4, .lotus-h5, .lotus-h6 { margin-bottom: 0.4em; line-height: 1.5;}
