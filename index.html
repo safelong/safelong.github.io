@@ -13,9 +13,11 @@ layout: default
 <article class="lotus-article">
 {% for rpost in paginator.posts limit:5 %}
     <h3><a href="{{ rpost.url }}" title="{{ rpost.title }}" rel="bookmark">{{ rpost.title }}</a></h3>
-    <p itemprop="description">{{ rpost.description }}</p>
+    <!--<p itemprop="description">{{ rpost.description }}</p> -->
     {% if site.truncate %}
     <p>{{ rpost.content | strip_html | truncate: site.truncate }}</p>
+    {% else %}
+    <p itemprop="description">{{ rpost.description }}</p>
     {% endif%}
 {% endfor %}
 </article>
