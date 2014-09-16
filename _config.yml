@@ -56,7 +56,7 @@ nav:
     icon: icon-reorder
     class: none
   - text: 关于我
-    url: /about/index.md
+    url: /about/index.html
     icon: icon-envelope-alt
     class: none
   - text: 联系我
@@ -76,7 +76,7 @@ page:
     url: /links.html
     last: true
   - text: 关于我
-    url: /contact.html
+    url: /about/index.html
     last: false
 
 author:
