@@ -14,7 +14,7 @@ comments: no
 
 {{ site.about }}
 
-<p><a href="http://safelong.github.io/resume/index.html">简历页</a></p>
+<p><a href="http://safelong.github.io/resume/index.html">更加详细的了解我</a></p>
 ----
 
 ###联系方式：
@@ -22,7 +22,7 @@ comments: no
 {% if site.qq %}
 ＱＱ：[{{ site.qq }}](tencent://message/?uin={{ site.qq }})
 {% endif %}
-网站：[{{ site.name }}]({{ site.url }})
+网站：[{{ site.author.name }}]({{ site.url }})
 
 邮箱：[{{ site.email }}](mailto:{{ site.email }})
 
