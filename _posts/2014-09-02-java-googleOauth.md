@@ -39,7 +39,8 @@ OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们
 * jackson-core-2.3.0.jar					
 
 ##Oauth认证，操作谷歌日历举例
-```
+
+{% highlight java %}
   private static final String APPLICATION_NAME = "xxx"; 		
 		
   /** Directory to store user credentials. */		
@@ -80,7 +81,7 @@ OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们
     LocalServerReceiver lr = new LocalServerReceiver.Builder().setHost("localhost").setPort(4682).build();		// 设定地址和端口
     return new AuthorizationCodeInstalledApp(flow, lr).authorize("user");		
   }		
-```
+{% endhighlight %}
 
 ##谷歌的一些sample	
 [https://code.google.com/p/google-api-java-client/source/browse/?repo=samples&name=default]("https://code.google.com/p/google-api-java-client/source/browse/?repo=samples&name=default")
