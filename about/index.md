@@ -10,7 +10,7 @@ comments: no
     {{ page.title }}
 </p>
 
-<h1 class="lotus-pagetit">About</h1>
+<h1 class="lotus-pagetit">关于我</h1>
 
 {{ site.about }}
 
