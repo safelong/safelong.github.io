@@ -48,7 +48,7 @@ IKAnalyzer.cfg.xml和stopword.dic放到根目录下，如src目录下
 如果需要使用扩展字典，就要新建ext.dic，当然，名字可以随便取
 
 ####IKAnalyzer.cfg.xml
-
+{% highlight xml %}
 	<?xml version="1.0" encoding="UTF-8"?>
 	<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">  
 	<properties>  
@@ -59,7 +59,7 @@ IKAnalyzer.cfg.xml和stopword.dic放到根目录下，如src目录下
 		<!--用户可以在这里配置自己的扩展停止词字典-->
 		<entry key="ext_stopwords">stopword.dic;</entry>  // stopword.dic，停用词字典，里面的词汇，分词以后不显示
 	</properties>
-
+{% endhighlight %}
 
 ####测试代码
 

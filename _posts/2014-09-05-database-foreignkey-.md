@@ -22,6 +22,7 @@ description: Mysql中查找所有外键
 
 ###一.查找所有库的存在的外键
 
+{% highlight sql %}
 	SELECT
 	    CONCAT(table_name, '.', column_name) AS 'foreign key',
 	    CONCAT(referenced_table_name, '.', referenced_column_name) AS 'references',
@@ -30,6 +31,8 @@ description: Mysql中查找所有外键
 	    information_schema.key_column_usage
 	WHERE
 	    referenced_table_name IS NOT NULL;
+
+{% endhighlight %}
 
 ###二.查找某个库的所有外键
 

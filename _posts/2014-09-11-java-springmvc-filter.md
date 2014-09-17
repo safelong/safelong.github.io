@@ -143,6 +143,8 @@ ShallowEtagHeaderFilter是spring提供的支持ETag的一个过滤器，所谓ET
 
 查看ShallowEtagHeaderFilter的源码如下：
 
+
+{% highlight java %}
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
 	  ShallowEtagResponseWrapper responseWrapper = new ShallowEtagResponseWrapper(response, null);
 	  filterChain.doFilter(request, responseWrapper);
@@ -175,6 +177,7 @@ ShallowEtagHeaderFilter是spring提供的支持ETag的一个过滤器，所谓ET
 	    copyBodyToResponse(body, response);
 	  }
 	}
+{% endhighlight %}
 
 由源码可知，ShallowEtagHeaderFilter只能根据结果判断是否重新向客户端发送数据，并不会不处理请求，因此节省带宽，而不能提高服务器性能。
 

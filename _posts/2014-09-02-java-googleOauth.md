@@ -41,46 +41,46 @@ OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们
 ##Oauth认证，操作谷歌日历举例
 
 {% highlight java %}
-  private static final String APPLICATION_NAME = "xxx"; 		
-		
-  /** Directory to store user credentials. */		
-  private static final java.io.File DATA_STORE_DIR =		
-      new java.io.File(System.getProperty("user.home"), ".store/calendar_sample");		
-		
-  /**		
-   * Global instance of the {@link DataStoreFactory}. The best practice is to make it a single		
-   * globally shared instance across your application.		
-   */		
-  private static FileDataStoreFactory dataStoreFactory;		
-  		
-  /** Global instance of the HTTP transport. */		
-  private static HttpTransport httpTransport;		
-		
-  /** Global instance of the JSON factory. */		
-  private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();		
-		
-// 取得Oauth认证		
-  /** Authorizes the installed application to access user's protected data. */		
-  private static Credential authorize() throws Exception {		
-    // load client secrets		
-    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,		
-        new InputStreamReader(CalendarSample.class.getResourceAsStream("/client_secrets.json")));	//根目录下的文件	
-    if (clientSecrets.getDetails().getClientId().startsWith("Enter")	// 验证	
-        || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {		
-      System.out.println(		
-          "Enter Client ID and Secret from https://code.google.com/apis/console/?api=calendar "		
-          + "into calendar-cmdline-sample/src/main/resources/client_secrets.json");		
-      System.exit(1);		
-    }		
-    // set up authorization code flow		
-    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(		
-        httpTransport, JSON_FACTORY, clientSecrets,		
-        Collections.singleton(CalendarScopes.CALENDAR)).setDataStoreFactory(dataStoreFactory)		// CalendarScopes.CALENDAR为需要授权的操作权限
-        .build();		
-    // authorize		
-    LocalServerReceiver lr = new LocalServerReceiver.Builder().setHost("localhost").setPort(4682).build();		// 设定地址和端口
-    return new AuthorizationCodeInstalledApp(flow, lr).authorize("user");		
-  }		
+	  private static final String APPLICATION_NAME = "xxx"; 		
+			
+	  /** Directory to store user credentials. */		
+	  private static final java.io.File DATA_STORE_DIR =		
+	      new java.io.File(System.getProperty("user.home"), ".store/calendar_sample");		
+			
+	  /**		
+	   * Global instance of the {@link DataStoreFactory}. The best practice is to make it a single		
+	   * globally shared instance across your application.		
+	   */		
+	  private static FileDataStoreFactory dataStoreFactory;		
+	  		
+	  /** Global instance of the HTTP transport. */		
+	  private static HttpTransport httpTransport;		
+			
+	  /** Global instance of the JSON factory. */		
+	  private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();		
+			
+	// 取得Oauth认证		
+	  /** Authorizes the installed application to access user's protected data. */		
+	  private static Credential authorize() throws Exception {		
+	    // load client secrets		
+	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,		
+	        new InputStreamReader(CalendarSample.class.getResourceAsStream("/client_secrets.json")));	//根目录下的文件	
+	    if (clientSecrets.getDetails().getClientId().startsWith("Enter")	// 验证	
+	        || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {		
+	      System.out.println(		
+	          "Enter Client ID and Secret from https://code.google.com/apis/console/?api=calendar "		
+	          + "into calendar-cmdline-sample/src/main/resources/client_secrets.json");		
+	      System.exit(1);		
+	    }		
+	    // set up authorization code flow		
+	    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(		
+	        httpTransport, JSON_FACTORY, clientSecrets,		
+	        Collections.singleton(CalendarScopes.CALENDAR)).setDataStoreFactory(dataStoreFactory)		// CalendarScopes.CALENDAR为需要授权的操作权限
+	        .build();		
+	    // authorize		
+	    LocalServerReceiver lr = new LocalServerReceiver.Builder().setHost("localhost").setPort(4682).build();		// 设定地址和端口
+	    return new AuthorizationCodeInstalledApp(flow, lr).authorize("user");		
+	  }		
 {% endhighlight %}
 
 ##谷歌的一些sample	
