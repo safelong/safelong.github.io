@@ -36,6 +36,7 @@ description: Mysql中查找所有外键
 
 ###二.查找某个库的所有外键
 
+{% highlight sql %}
 	SELECT
 	    CONCAT(table_name, '.', column_name) AS 'foreign key',
 	    CONCAT(referenced_table_name, '.', referenced_column_name) AS 'references',
@@ -45,16 +46,18 @@ description: Mysql中查找所有外键
 	WHERE
 	    referenced_table_name IS NOT NULL
 	    AND table_schema = 'your_database_name';
+{% endhighlight %}
 
 ###三.查找库里某个表的所有外键
 
+{% highlight sql %}
 	SELECT *
 	FROM
 	  information_schema.KEY_COLUMN_USAGE
 	WHERE
 	  REFERENCED_TABLE_NAME = 'your_table_name'
 	  AND TABLE_SCHEMA = 'your_database_name';
-
+{% endhighlight %}
 
 基本以上办法就能找到外键了。
 

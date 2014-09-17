@@ -63,7 +63,7 @@ IKAnalyzer.cfg.xml和stopword.dic放到根目录下，如src目录下
 
 ####测试代码
 
-{% highlight java %}
+{% highlight java linenos %}
 	package com.xxx.xxx.Common.Analyzer;
 	
 	import java.io.IOException;
