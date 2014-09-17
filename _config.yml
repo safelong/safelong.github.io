@@ -51,7 +51,7 @@ nav:
     url: /
     icon: icon-home
     class: home
-  - text: 文章归档
+  - text: 文章分类
     url: /archives.html
     icon: icon-reorder
     class: none
