@@ -39,7 +39,7 @@ OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们
 * jackson-core-2.3.0.jar					
 
 ##Oauth认证，操作谷歌日历举例
-```java
+```
   private static final String APPLICATION_NAME = "xxx"; 		
 		
   /** Directory to store user credentials. */		
