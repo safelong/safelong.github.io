@@ -57,10 +57,10 @@ nav:
     class: none
   - text: 关于我
     url: /about/index.html
-    icon: icon-envelope-alt
+    icon: icon-user
     class: none
   - text: 联系我
-    url: 
+    url: icon-envelope-alt
     icon: icon-heart
     class: none
   - text: 博客源代码
