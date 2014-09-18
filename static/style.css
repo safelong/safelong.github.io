@@ -962,7 +962,7 @@ pre.prettyprint{
 .h3 time{color:#999999;}
 .listing-seperator{font-weight:bold;}
 img {
-    max-width:100%;
+    width:100%;
 }
 
 .paginator {
