@@ -14,7 +14,7 @@ comments: no
 
 {{ site.about }}
 
-<p><a href="http://safelong.github.io/resume/index.html">更加详细的了解我</a></p>
+<p><a href="http://safelong.github.io">更加详细的了解我</a></p>
 ----
 
 ###联系方式：
