@@ -1,5 +1,5 @@
 ---
-title: 关于
+title: SafeLong|关于
 layout: default
 comments: no
 ---
