@@ -44,6 +44,7 @@ subTitle: 记录工作生活的点点滴滴.
 description: safelong的大杂烩！它是基于 Jekyll 搭建起来的。在这里是用来快速记录工作，学习，生活的一点一滴的地方。
 url: 
 feed: /atom.xml
+siteTitle: SafeLong的大杂烩
 
 #菜单配置
 nav:
