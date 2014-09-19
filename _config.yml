@@ -98,3 +98,7 @@ duoshuo: safelong
 #cnzz: 119959
 weibo: 1040804112
 github: safelong
+
+# 404.html
+404_heading: '对不起，无法找到该页。'
+404_content: '页面将在数秒内自动跳转回 <a href="http://safelong.github.io">safelong.cc</a>'
