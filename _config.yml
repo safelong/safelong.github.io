@@ -23,7 +23,7 @@ truncate: 150
 
 # Conversion
 markdown:     rdiscount
-highlighter:  pygments
+#highlighter:  pygments
 lsi:          false
 excerpt_separator: "\n\n"
 
