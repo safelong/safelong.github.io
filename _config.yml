@@ -58,7 +58,7 @@ nav:
     class: none
   - text: 留言墙
     url: /guestbook.html
-    icon: icon-heart
+    icon: icon-book
     class: none
   - text: 关于我
     url: /about/index.html
