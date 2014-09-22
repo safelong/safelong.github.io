@@ -56,7 +56,7 @@ nav:
     url: /archives.html
     icon: icon-reorder
     class: none
-  - text: 最新留言
+  - text: 留言墙
     url: /guestbook.html
     icon: icon-heart
     class: none
