@@ -56,13 +56,13 @@ nav:
     url: /archives.html
     icon: icon-reorder
     class: none
-  - text: 关于我
-    url: /about/index.html
-    icon: icon-user
-    class: none
   - text: 留言板
     url: /guestbook.html
     icon: icon-heart
+    class: none
+  - text: 关于我
+    url: /about/index.html
+    icon: icon-user
     class: none
   - text: 博客源代码
     url: https://github.com/safelong
