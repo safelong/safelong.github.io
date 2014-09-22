@@ -1,5 +1,14 @@
 ---
 layout: default
-title: 留言板
+title: 最新留言
 ---
+
+<p class="lotus-breadcrub">
+    <a href="{{ site.url }}/index.html" rel="nofollow" rel="nofollow" title="首页">首页</a>
+    <span> &gt; </span>
+    {{ page.title }}
+</p>
+
+<h1 class="lotus-pagetit">最新留言</h1>
 {% include guestbook.md %}
+{% include comments.md %}
