@@ -60,8 +60,8 @@ nav:
     url: /about/index.html
     icon: icon-user
     class: none
-  - text: 联系我
-    url: icon-envelope-alt
+  - text: 留言板
+    url: /guestbook.html
     icon: icon-heart
     class: none
   - text: 博客源代码
