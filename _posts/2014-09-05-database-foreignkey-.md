@@ -76,7 +76,7 @@ description: Mysql中查找所有外键
 ##开启外键检查
 修改表结束以后，如果还要使用外键，就要开启外键检查
 
-	SET FOREIGN_KEY_CHECKS = 0
+	SET FOREIGN_KEY_CHECKS = 1
 
 
 ##单独删除某个表的外键
