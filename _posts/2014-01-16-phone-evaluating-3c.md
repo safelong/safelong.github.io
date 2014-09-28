@@ -2,8 +2,8 @@
 layout: post
 title: 荣耀3C评测， 对比N986！！
 thread: 14
-categories: 手机
-tags: 手机
+categories: 评测
+tags: 手机,评测
 keywords: 手机评测,N986, 荣耀3C, 华为手机, 拍照效果, 中兴N986, 青漾
 description: 华为手机荣耀3C的具体评测，和中兴N986对比，从相机等方面具体评测
 ---
