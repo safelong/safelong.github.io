@@ -56,7 +56,7 @@ description: 品胜云座·易充随身路由器评测
 ###配件
 品胜云app下载卡片、一个TF卡转SD卡卡套、一根数据线兼充电线、厚厚一张折叠起来的说明书。
 
-![](/assets/pinsheng/peijian.png)
+![](/assets/pinsheng/peijian.jpg)
 
 注意：数据线没有充电头，这就需要自己找个其他的充电头来适配一下了。
 
@@ -64,27 +64,27 @@ description: 品胜云座·易充随身路由器评测
 ###主界面
 把云端易充正面的开关调至WIFI开关，不一会手机就能找到WIFI信号，连上（第一次没有密码，建议先设定密码），打开手机的浏览器，输192.168.222.254之后就可以直接看到主界面了
 
-![](/assets/pinsheng/setting01.png)
+![](/assets/pinsheng/setting01.jpg)
 
 ###菜单-文件管理
 在这里可以管理上传到云端（路由器SD卡/U盘里）的文件（后面有SD卡/U盘的详细介绍）
 
-![](/assets/pinsheng/setting02.png)
+![](/assets/pinsheng/setting02.jpg)
 
 ###菜单-基本设置
 这里可以直接设定WIFI热点的名称和密码，建议第一次使用先在这里设定好密码（设定后需重新连接云端易充)。
 
-![](/assets/pinsheng/setting03.png)
+![](/assets/pinsheng/setting03.jpg)
 
 ###菜单-外网接入
 这里默认是有线路由，在一些没有WIFI的酒店，可以通过提供的有线网线插入云端易充的网口直接将有线信号转化为无线信号，当然其他两个选择也可以按需要选择。
 
-![](/assets/pinsheng/setting04.png)
+![](/assets/pinsheng/setting04.jpg)
 
 ###菜单-高级设置
 普通用户一般用不到，这里也不介绍了.看看图得了！
 
-![](/assets/pinsheng/setting06.png)
+![](/assets/pinsheng/setting06.jpg)
 
 ###菜单-固件升级
 可以从官网上下载好最新的固件存手机上给云端易充进行升级，查了，目前的1.5.10已经是最新版了。希望品胜的工程师们，定期的进行固件升级，使该产品越来越强大！
@@ -120,7 +120,7 @@ TODO：
 
 也可以通过打开手机扫描后面二维码下载安装好的云端APP软件，通过该APP对外界设备进行管理。
 
-![](/assets/pinsheng/app.png)
+![](/assets/pinsheng/app.jpg)
 
 该APP具体怎么使用，大家还是自己体会吧，很简单，我就不浪费篇幅了。
 
