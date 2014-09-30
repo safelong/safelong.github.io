@@ -140,13 +140,24 @@ description: 品胜云座·易充随身路由器评测
 
 前提：手机连接云座wifi
 
-工具：*RE管理器* OR 其他文件管理器 OR Wireless Cloud
+工具：*RE管理器* OR 其他文件管理器
 
 步骤：如下图
 
 ![](/assets/pinsheng/re.png)
 
 结果：以后就把它当做一个外接SD卡就行了，想怎么操作就怎么操作。
+
+4.软件推荐：wireless cloud
+
+谁用谁知道，其实品胜的云端APP，就是就是参照wireless cloud开发的，但是功能没有wireless cloud强大。
+
+有了wireless cloud，自己自由操作云座SD卡和手机卡的内容了
+
+看图说话，不要流口水啊！
+
+![](/assets/pinsheng/cloud.jpg)
+
 
 *还有一个天大的好消息：*
 
