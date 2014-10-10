@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 人”智键“，则无敌？--360智键试用
-thread: 17
+thread: 18
 categories: 评测
 tags: 评测
 keywords: 360智键,智键, 米键
@@ -22,7 +22,7 @@ description: 360智键简单试用
 
 ##外观
 
-![](/assets/360zhijian/2.jpg)
+![](/assets/360zhijian/3.jpg)
 
 很小的一个东西。
 
