@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 麻雀虽小，五脏俱全--品胜云座·易充随身路由器评测
-thread: 17
+thread: 18
 categories: 评测
 tags: 评测
 keywords: 品胜,'云座·易充', 随身路由器, 云座, 'wireless cloud', 移动电源
