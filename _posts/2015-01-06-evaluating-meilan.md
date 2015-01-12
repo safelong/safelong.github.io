@@ -61,9 +61,9 @@ description: 针对网上传言的各种问题，进行千元机魅蓝note评测
 
 魅蓝note vs 华为荣耀3c vs 中兴N986，灰尘请无视
 
-![](/assets/meilan/4.jpg)
+![](/assets/meilan/4.JPG)
 
-![](/assets/meilan/5.jpg)
+![](/assets/meilan/5.JPG)
 
 
 ##屏幕
@@ -79,13 +79,13 @@ description: 针对网上传言的各种问题，进行千元机魅蓝note评测
 
 魅蓝note vs 荣耀3c vs 中兴N986
 
-![](/assets/meilan/pingmu1.jpg)
+![](/assets/meilan/pingmu1.JPG)
 
-![](/assets/meilan/pingmu2.jpg)
+![](/assets/meilan/pingmu2.JPG)
 
-![](/assets/meilan/pingmu3.jpg)
+![](/assets/meilan/pingmu3.JPG)
 
-![](/assets/meilan/pingmu4.jpg)
+![](/assets/meilan/pingmu4.JPG)
 
 结论：魅蓝note不是大灰屏，屏幕色调有些偏黄，但是不吓人。
 
