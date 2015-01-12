@@ -117,7 +117,7 @@ description: 针对网上传言的各种问题，进行千元机魅蓝note评测
 
 ![](/assets/meilan/paizhao1.jpg)
 
-![](/assets/meilan/paizhao1-2.jpg)
+![](/assets/meilan/paizhao3.jpg)
 
 近景：拍近景和人像使用，表现还可以
 
@@ -125,7 +125,7 @@ description: 针对网上传言的各种问题，进行千元机魅蓝note评测
 
 远景：可由微单代替。六楼的高度，放大以后依稀可以看到车牌号
 
-![](/assets/meilan/paizhao3.jpg)
+![](/assets/meilan/paizhao1-2.jpg)
 
 夜景：用处相当的少
 
