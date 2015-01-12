@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 流言止于智者--千元机魅蓝note评测 
+title: 眼见为实--千元机魅蓝note评测 
 thread: 23
 categories: 评测
 tags: evaluating
@@ -119,7 +119,7 @@ description: 针对网上传言的各种问题，进行千元机魅蓝note评测
 
 ![](/assets/meilan/paizhao1-2.jpg)
 
-近景：拍人像使用
+近景：拍近景和人像使用，表现还可以
 
 ![](/assets/meilan/paizhao2.jpg)
 
