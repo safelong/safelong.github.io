@@ -36,9 +36,14 @@ cas-server-webapp-4.0.0.war放入tomcat的webapps
 
 启动tomcat
 
-用地址：http://localhost:8080/cas-server-webapp-4.0.0/login，访问
+用地址：http://localhost:8080/cas-server-webapp-4.0.0/login，访问，用默认的英语
+
+用户名：casuser
+密码：Mellon
 
 ![](/assets/cas/cas03.jpg)
+
+![](/assets/cas/cas07.jpg)
 
 
 ##eclipse导入cas-server-webapp-4.0.0.war
