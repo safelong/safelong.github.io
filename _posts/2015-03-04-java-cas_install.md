@@ -4,8 +4,8 @@ title: Jasig CAS服务器安装，简单使用
 thread: 24
 categories: java
 tags: CAS
-keywords: CAS，SSO，单点登录，Spring MVC
-description: CAS服务端安装，为集成到spring做准备
+keywords: CAS，SSO，单点登录，Spring MVC，CAS server 4.0
+description: CAS服务端4.0安装，为集成到spring做准备
 ---
 
 SSO ： 单点登录（Single Sign On , 简称 SSO ） 
@@ -38,6 +38,9 @@ cas-server-webapp-4.0.0.war放入tomcat的webapps
 
 用地址：http://localhost:8080/cas-server-webapp-4.0.0/login，访问，用默认的英语
 
+4.0以后，不在是用户名和密码相同就能登录了，而是要用配置文件（deployerConfigContext.xml）里面的。
+
+bean：primaryAuthenticationHandler
 用户名：casuser
 密码：Mellon
 
