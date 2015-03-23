@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 全网通大神X7和魅蓝Note对比评测（一）
-thread: 25
+thread: 26
 categories: 评测
 tags: 评测
 keywords: 全网通，大神X7，双4G，魅蓝Note
@@ -32,9 +32,11 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 两者的手感都很他妈的不错！！！
 
 手握图（我手比较小）
+
 ![](/assets/dazenX7/waiguan1.jpg)
 
 大小对比图
+
 ![](/assets/dazenX7/waiguan2.jpg)
 
 ###按键及开孔分布
