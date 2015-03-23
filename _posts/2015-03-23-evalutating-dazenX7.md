@@ -32,14 +32,14 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 两者的手感都很他妈的不错！！！
 
 手握图（我手比较小）
-![](/assets/dazen/waiguan1.jpg)
+![](/assets/dazenX7/waiguan1.jpg)
 
 大小对比图
-![](/assets/dazen/waiguan2.jpg)
+![](/assets/dazenX7/waiguan2.jpg)
 
 ###按键及开孔分布
 
-![](/assets/dazen/anjian.jpg)
+![](/assets/dazenX7/anjian.jpg)
 
 两者的区别就是电源键的位置，还有同样是双卡，大神X7是两个卡槽，魅蓝note是一个卡槽。
 
@@ -59,7 +59,7 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 
 吐槽一下：大神X7，敢不敢把卡2也设计成支持Micro-SIM卡？？两个卡类型不一样，太坑爹了！！
 
-![](/assets/dazen/kacao.jpg)
+![](/assets/dazenX7/kacao.jpg)
 
 ###后置摄像头
 
@@ -67,11 +67,11 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 
 大神X7的后置摄像头很方很正，魅蓝note的后置摄像头很圆很圆。
 
-![](/assets/dazen/shexiangtou.jpg)
+![](/assets/dazenX7/shexiangtou.jpg)
 
 大神X7的摄像头很是突出，可能跟超薄的机身有关系。机身平放的话，很容易磨掉摄像头上面的漆！！或者，你能少突出一些吗？
 
-![](/assets/dazen/shexiangtou2.jpg)
+![](/assets/dazenX7/shexiangtou2.jpg)
 
 ###屏息效果
 
