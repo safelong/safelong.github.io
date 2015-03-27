@@ -39,6 +39,14 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 
 ![](/assets/dazenX7/waiguan2.jpg)
 
+X7正面照
+
+![](/assets/dazenX7/waiguan3.jpg)
+
+X7背面照
+
+![](/assets/dazenX7/waiguan4.jpg)
+
 ###按键及开孔分布
 
 ![](/assets/dazenX7/anjian.jpg)
@@ -48,6 +56,10 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 个人更加喜欢电源按键在侧面，毕竟现在屏幕这么大，顶部想按一次电源太费劲。
 
 但是，魅蓝note由于使用圆点锁屏和双击亮屏，电源键几乎用不到，只有开关机能用到。
+
+按键对比图
+
+![](/assets/dazenX7/anjian2.jpg)
 
 ###卡槽
 
@@ -74,10 +86,6 @@ X7的外观尺寸：146.6 X 73.6 X 6.5mm
 大神X7的摄像头很是突出，可能跟超薄的机身有关系。机身平放的话，很容易磨掉摄像头上面的漆！！或者，你能少突出一些吗？
 
 ![](/assets/dazenX7/shexiangtou2.jpg)
-
-###屏息效果
-
-###屏幕表现
 
 
 
