@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 跟我一起做“三好”学生--品胜三好盒子评测
+title: 跟我一起做“三好”学生--品胜视频云盒评测
 thread: 29
 categories: 评测
 tags: 评测
