@@ -121,7 +121,7 @@ description: usense出品的，细分智能设备市场的一款产品。
 废话不说，看图，厂家给出了很详细的说明。
 
 <br>
-![](/assets/usense/zhiyi1.jpg)
+![](/assets/usense/zhuyi1.jpg)
 <br>
 ![](/assets/usense/zhuyi2.jpg)
 
