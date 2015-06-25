@@ -99,6 +99,20 @@ duoshuo: safelong
 weibo: 1040804112
 github: safelong
 
+#评测文章
+evaluation:
+"
+<p>中兴清漾N986：http://safelong.cc/2013/06/10/evaluating-N986/</p> 
+<p>华为荣耀3C：http://safelong.cc/2014/01/16/phone-evaluating-3c/</p> 
+<p>360智键：http://safelong.cc/2014/10/10/evaluating-360zhijian/</p>
+<p>品胜云座·易充随身路由器：http://safelong.cc/2014/09/30/evaluating-pinsheng/</p> 
+<p>魅蓝note：http://safelong.cc/2015/01/06/evaluating-meilan/</p> 
+<p>酷派大神X7：http://safelong.cc/2015/03/23/evalutating-dazenX7/</p> 
+<p>TCL手机：http://safelong.cc/2015/05/10/evalutating-tcl-p620M/</p> 
+<p>品胜云盒：http://safelong.cc/2015/05/14/evalutating-sanhaohezi/</p> 
+<p>羽毛球智能感应：http://safelong.cc/2015/06/21/evalutating-usense/</p> 
+"
+
 # 404.html
 404_heading: '对不起，无法找到该页。'
 404_content: '页面将在数秒内自动跳转回 <a href="http://safelong.github.io">safelong.cc</a>'
