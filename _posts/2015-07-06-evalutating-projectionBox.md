@@ -99,7 +99,7 @@ hdmi插头特写一下<p>
 ![](/assets/projectionBox/miracast1.jpg)<p>
 ![](/assets/projectionBox/miracast2.jpg)<p>
 
-显示到电视上的效果
+显示到电视上的效果<p>
 ![](/assets/projectionBox/miracast3.jpg)<p>
 
 
