@@ -16,7 +16,9 @@ comments: no
 
 <p><a href="http://safelong.github.io">更加详细的了解我</a></p>
 ----
-
+###写过的评测：
+{{ site.evaluation }}
+----
 ###联系方式：
 
 {% if site.qq %}
