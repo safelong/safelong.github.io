@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="目标实现微 信个人号根据聊天的关键字，自动回复一些信息，使用开发语言为python。为了不破坏现有的armbian系统，使用docker来部署环境。网上现有的教程，都是基于wechaty0.65老版本的，再最新的版本下，很难一次跑成功。所以，更多的参考的官方文档，遇到问题也是去官方查看Issues。希望总结能让需要的朋友少走一些坑。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探Wechaty-环境搭建">
+<meta property="og:url" content="http://blog.safelong.top/2023/02/21/%E5%88%9D%E6%8E%A2Wechaty-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="目标实现微 信个人号根据聊天的关键字，自动回复一些信息，使用开发语言为python。为了不破坏现有的armbian系统，使用docker来部署环境。网上现有的教程，都是基于wechaty0.65老版本的，再最新的版本下，很难一次跑成功。所以，更多的参考的官方文档，遇到问题也是去官方查看Issues。希望总结能让需要的朋友少走一些坑。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-21T13:58:00.000Z">
+<meta property="article:modified_time" content="2023-02-23T06:53:20.000Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="Wechaty">
+<meta property="article:tag" content="docker，puppet">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2023/02/21/%E5%88%9D%E6%8E%A2Wechaty-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2023/02/21/%E5%88%9D%E6%8E%A2Wechaty-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/","path":"2023/02/21/初探Wechaty-环境搭建/","title":"初探Wechaty-环境搭建"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>初探Wechaty-环境搭建 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81docker%E9%83%A8%E7%BD%B2%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">1.</span> <span class="nav-text">一、docker部署启动服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%8B%89%E5%8F%96wechaty%E6%9C%80%E6%96%B0%E9%95%9C%E5%83%8F"><span class="nav-number">1.1.</span> <span class="nav-text">1、拉取wechaty最新镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">2、设置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%90%AF%E5%8A%A8%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="nav-number">1.3.</span> <span class="nav-text">3、启动运行容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E5%90%8E%EF%BC%8C%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%EF%BC%8C%E7%BD%91%E7%BB%9C%E6%98%AF%E5%90%A6%E6%9C%89%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">4、容器启动后，验证是否成功，网络是否有问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81docker%E9%83%A8%E7%BD%B2%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">二、docker部署客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%BB%E6%9C%BA%E6%98%AF%E9%83%A8%E7%BD%B2%E5%9C%A8%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">2.1.</span> <span class="nav-text">1、主机是部署在内网服务器上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E4%B8%BB%E6%9C%BA%E6%98%AF%E9%83%A8%E7%BD%B2%E5%9C%A8%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A"><span class="nav-number">2.2.</span> <span class="nav-text">2、主机是部署在内网服务器上</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/album/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2023/02/21/%E5%88%9D%E6%8E%A2Wechaty-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/album/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="初探Wechaty-环境搭建 | Safelong的大杂烩">
+      <meta itemprop="description" content="目标实现微 信个人号根据聊天的关键字，自动回复一些信息，使用开发语言为python。为了不破坏现有的armbian系统，使用docker来部署环境。网上现有的教程，都是基于wechaty0.65老版本的，再最新的版本下，很难一次跑成功。所以，更多的参考的官方文档，遇到问题也是去官方查看Issues。希望总结能让需要的朋友少走一些坑。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          初探Wechaty-环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-21 21:58:00" itemprop="dateCreated datePublished" datetime="2023-02-21T21:58:00+08:00">2023-02-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-23 14:53:20" itemprop="dateModified" datetime="2023-02-23T14:53:20+08:00">2023-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">目标实现微 信个人号根据聊天的关键字，自动回复一些信息，使用开发语言为python。为了不破坏现有的armbian系统，使用docker来部署环境。网上现有的教程，都是基于wechaty0.65老版本的，再最新的版本下，很难一次跑成功。所以，更多的参考的官方文档，遇到问题也是去官方查看Issues。希望总结能让需要的朋友少走一些坑。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>学习地址：</p>
+<p><a target="_blank" rel="noopener" href="https://wechaty.readthedocs.io/zh_CN/latest/d">https://wechaty.readthedocs.io/zh_CN/latest/d</a><br><a target="_blank" rel="noopener" href="https://wechaty.js.org/2021/02/03/python-wechaty-for-padlocal-puppet-service/">https://wechaty.js.org/2021/02/03/python-wechaty-for-padlocal-puppet-service/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/wechaty/python-wechaty">https://github.com/wechaty/python-wechaty</a><br><a target="_blank" rel="noopener" href="https://github.com/wechaty/python-wechaty-getting-started">https://github.com/wechaty/python-wechaty-getting-started</a></p>
+<p><a target="_blank" rel="noopener" href="https://wechaty.js.org/docs/puppet-services/padlocal">https://wechaty.js.org/docs/puppet-services/padlocal</a><br><a target="_blank" rel="noopener" href="https://wechaty.js.org/2021/03/08/python-wechaty-and-wechaty-puppet-padlocal/">https://wechaty.js.org/2021/03/08/python-wechaty-and-wechaty-puppet-padlocal/</a></p>
+<h1 id="一、docker部署启动服务端"><a href="#一、docker部署启动服务端" class="headerlink" title="一、docker部署启动服务端"></a><strong>一、docker部署启动服务端</strong></h1><h2 id="1、拉取wechaty最新镜像"><a href="#1、拉取wechaty最新镜像" class="headerlink" title="1、拉取wechaty最新镜像"></a><strong>1、拉取wechaty最新镜像</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull wechaty/wechaty</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、设置环境变量"><a href="#2、设置环境变量" class="headerlink" title="2、设置环境变量"></a><strong>2、设置环境变量</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#使用Padloc取l协议</span><br><span class="line">export WECHATY_LOG=&quot;verbose&quot;</span><br><span class="line">export WECHATY_PUPPET=&quot;wechaty-puppet-padlocal&quot;</span><br><span class="line"></span><br><span class="line">#token获取：http://pad-local.com/#/tokens</span><br><span class="line">export WECHATY_PUPPET_PADLOCAL_TOKEN=&quot;puppet_padlocal_219aa74bd5774c1ca70248703f9d7378&quot;</span><br><span class="line">export WECHATY_PUPPET_SERVER_PORT=&quot;9001&quot;</span><br><span class="line"># 可使用代码随机生成UUID：import uuid;print(uuid.uuid4());</span><br><span class="line">export WECHATY_TOKEN=&quot;1fe5f846-3cfb-401d-b20c-xxxx&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">\#对于0.68之后得版本，一定要设置这个参数，不然客户端无法连接</span><br><span class="line"></span><br><span class="line">export WECHATY_PUPPET_SERVICE_NO_TLS_INSECURE_SERVER=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3、启动运行容器"><a href="#3、启动运行容器" class="headerlink" title="3、启动运行容器"></a><strong>3、启动运行容器</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line"> --name wechaty_puppet_service_token_gateway \</span><br><span class="line"> --rm \</span><br><span class="line"> -e WECHATY_LOG \</span><br><span class="line"> -e WECHATY_PUPPET \</span><br><span class="line"> -e WECHATY_PUPPET_PADLOCAL_TOKEN \</span><br><span class="line"> -e WECHATY_PUPPET_SERVER_PORT \</span><br><span class="line"></span><br><span class="line"> -e WECHATY_PUPPET_SERVICE_NO_TLS_INSECURE_SERVER \</span><br><span class="line"> -e WECHATY_TOKEN \</span><br><span class="line"> -p &quot;$WECHATY_PUPPET_SERVER_PORT:$WECHATY_PUPPET_SERVER_PORT&quot; \</span><br><span class="line"> wechaty/wechaty</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、容器启动后，验证是否成功，网络是否有问题"><a href="#4、容器启动后，验证是否成功，网络是否有问题" class="headerlink" title="4、容器启动后，验证是否成功，网络是否有问题"></a><strong>4、容器启动后，验证是否成功，网络是否有问题</strong></h2><p><a target="_blank" rel="noopener" href="https://api.chatie.io/v0/hosties/xxxx">https://api.chatie.io/v0/hosties/1fe5f846-3cfb-401d-b20c-xxxx</a></p>
+<p>Good: {“ip”:”47.119.129.29”,”port”:8788}<br>No Good: {“ip”:”0.0.0.0”,”port”:0}</p>
+<h1 id="二、docker部署客户端"><a href="#二、docker部署客户端" class="headerlink" title="二、docker部署客户端"></a>二、docker部署客户端</h1><p>由于我使用python-wechaty作为客户端，所以我拉取了python3.10的docker镜像作为基础，然后按照start的教程，安装运行环境。</p>
+<p>**注意，不要使用python3.11，可能会导致python-wechaty的实例代码跑不起来</p>
+<h2 id="1、主机是部署在内网服务器上"><a href="#1、主机是部署在内网服务器上" class="headerlink" title="1、主机是部署在内网服务器上"></a>1、主机是部署在内网服务器上</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export WECHATY_PUPPET_SERVICE_TOKEN=1fe5f846-3cfb-401d-b20c-xxxx</span><br></pre></td></tr></table></figure>
+<p>#这里的token与服务端的WECHATY_TOKEN保持一致，不要使用WECHATY_PUPPET_PADLOCAL_TOKEN<br>#部署到外网的话，会通过这个token取puppet找到我们的服务，并取得ip和端口进行访问</p>
+<h2 id="2、主机是部署在内网服务器上"><a href="#2、主机是部署在内网服务器上" class="headerlink" title="2、主机是部署在内网服务器上"></a>2、主机是部署在内网服务器上</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export WECHATY_PUPPET_SERVICE_TOKEN=1fe5f846-3cfb-401d-b20c-xxxx</span><br><span class="line">export WECHATY_PUPPET_SERVICE_ENDPOINT=192.168.2.37:9001</span><br></pre></td></tr></table></figure>
+<p>#这里的token与服务端的WECHATY_TOKEN保持一致，不要使用WECHATY_PUPPET_PADLOCAL_TOKEN<br>#服务在内网，WECHATY_PUPPET_SERVICE_ENDPOINT的地址写docker宿主的ip和映射端口</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Wechaty/" rel="tag"># Wechaty</a>
+              <a href="/tags/docker%EF%BC%8Cpuppet/" rel="tag"># docker，puppet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/07/23/2015-07-23-evalutating-speaker/" rel="prev" title="看起来很美-Bento近距接触式音箱评测">
+                  <i class="fa fa-chevron-left"></i> 看起来很美-Bento近距接触式音箱评测
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/02/22/2023-02-23-docker%E5%AE%89%E8%A3%85Hexo%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/" rel="next" title="docker安装Hexo并配置使用">
+                  docker安装Hexo并配置使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
