@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="谷歌Oauth认证操作日历">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谷歌Oauth认证操作日历">
+<meta property="og:url" content="http://blog.safelong.top/2014/09/01/2014-09-02-java-googleOauth/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="谷歌Oauth认证操作日历">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-09-01T21:49:00.000Z">
+<meta property="article:modified_time" content="2023-02-24T02:35:51.661Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2014/09/01/2014-09-02-java-googleOauth/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2014/09/01/2014-09-02-java-googleOauth/","path":"2014/09/01/2014-09-02-java-googleOauth/","title":"谷歌Oauth认证操作日历"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>谷歌Oauth认证操作日历 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2014/09/01/2014-09-02-java-googleOauth/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="谷歌Oauth认证操作日历 | Safelong的大杂烩">
+      <meta itemprop="description" content="谷歌Oauth认证操作日历">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          谷歌Oauth认证操作日历
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-02 05:49:00" itemprop="dateCreated datePublished" datetime="2014-09-02T05:49:00+08:00">2014-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-24 10:35:51" itemprop="dateModified" datetime="2023-02-24T10:35:51+08:00">2023-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">谷歌Oauth认证操作日历</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>##Oauth认证				<br>OAuth（开放授权）是一个开放标准，允许用户让第三方应用访问该用户在某一网站上存储的私密的资源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用	</p>
+<p>OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们存放在特定服务提供者的数据。	</p>
+<p>每一个令牌授权一个特定的网站（例如，视频编辑网站)在特定的时段（例如，接下来的2小时内）内访问特定的资源（例如仅仅是某一相册中的视频）。</p>
+<p>这样，OAuth让用户可以授权第三方网站访问他们存储在另外服务提供者的某些特定信息，而非所有内容。			<br>##前提					</p>
+<ul>
+<li>1.去<a target="_blank" rel="noopener" href="https://cloud.google.com/console/project%E5%9C%B0%E5%9D%80%E4%B8%8B%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAproject">https://cloud.google.com/console/project地址下，创建一个project</a>			</li>
+<li>2.在project下的APIs里面，把需要操作的API的STATUS设置成ON			</li>
+<li>3.在project的Credentials里面，Creat new Client ID，选择web application,	<br>  设定好Redirect URIs，这是验证成功后跳转的地址</li>
+</ul>
+<p>			</p>
+<p>##所需要的jar包	</p>
+<ul>
+<li>google-oauth-client-1.17.0-rc.jar					</li>
+<li>google-http-client-1.17.0-rc.jar					</li>
+<li>google-api-client-1.17.0-rc.jar					</li>
+<li>google-oauth-client-java6-1.17.0-rc.jar					</li>
+<li>google-oauth-client-jetty-1.17.0-rc.jar					</li>
+<li>google-http-client-jackson2-1.17.0-rc.jar					</li>
+<li>google-api-services-oauth2-v2-rev60-1.17.0-rc.jar					</li>
+<li>google-api-services-calendar-v3-rev72-1.17.0-rc.jar	(根据要操作的应用选择，以下例子是操作谷歌日历)				</li>
+<li>jackson-core-2.3.0.jar</li>
+</ul>
+<p>					</p>
+<p>##Oauth认证，操作谷歌日历举例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">  private static final String APPLICATION_NAME = &quot;xxx&quot;; 		</span><br><span class="line">		</span><br><span class="line">  /** Directory to store user credentials. */		</span><br><span class="line">  private static final java.io.File DATA_STORE_DIR =		</span><br><span class="line">      new java.io.File(System.getProperty(&quot;user.home&quot;), &quot;.store/calendar_sample&quot;);		</span><br><span class="line">		</span><br><span class="line">  /**		</span><br><span class="line">   * Global instance of the &#123;@link DataStoreFactory&#125;. The best practice is to make it a single		</span><br><span class="line">   * globally shared instance across your application.		</span><br><span class="line">   */		</span><br><span class="line">  private static FileDataStoreFactory dataStoreFactory;		</span><br><span class="line">  		</span><br><span class="line">  /** Global instance of the HTTP transport. */		</span><br><span class="line">  private static HttpTransport httpTransport;		</span><br><span class="line">		</span><br><span class="line">  /** Global instance of the JSON factory. */		</span><br><span class="line">  private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();		</span><br><span class="line">		</span><br><span class="line">// 取得Oauth认证		</span><br><span class="line">  /** Authorizes the installed application to access user&#x27;s protected data. */		</span><br><span class="line">  private static Credential authorize() throws Exception &#123;		</span><br><span class="line">    // load client secrets		</span><br><span class="line">    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,		</span><br><span class="line">        new InputStreamReader(CalendarSample.class.getResourceAsStream(&quot;/client_secrets.json&quot;)));	//根目录下的文件	</span><br><span class="line">    if (clientSecrets.getDetails().getClientId().startsWith(&quot;Enter&quot;)	// 验证	</span><br><span class="line">        || clientSecrets.getDetails().getClientSecret().startsWith(&quot;Enter &quot;)) &#123;		</span><br><span class="line">      System.out.println(		</span><br><span class="line">          &quot;Enter Client ID and Secret from https://code.google.com/apis/console/?api=calendar &quot;		</span><br><span class="line">          + &quot;into calendar-cmdline-sample/src/main/resources/client_secrets.json&quot;);		</span><br><span class="line">      System.exit(1);		</span><br><span class="line">    &#125;		</span><br><span class="line">    // set up authorization code flow		</span><br><span class="line">    GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(		</span><br><span class="line">        httpTransport, JSON_FACTORY, clientSecrets,		</span><br><span class="line">        Collections.singleton(CalendarScopes.CALENDAR)).setDataStoreFactory(dataStoreFactory)		// CalendarScopes.CALENDAR为需要授权的操作权限</span><br><span class="line">        .build();		</span><br><span class="line">    // authorize		</span><br><span class="line">    LocalServerReceiver lr = new LocalServerReceiver.Builder().setHost(&quot;localhost&quot;).setPort(4682).build();		// 设定地址和端口</span><br><span class="line">    return new AuthorizationCodeInstalledApp(flow, lr).authorize(&quot;user&quot;);		</span><br><span class="line">  &#125;		</span><br></pre></td></tr></table></figure>
+
+<p>##谷歌的一些sample	<br><a href="%22https://code.google.com/p/google-api-java-client/source/browse/?repo=samples&name=default%22">https://code.google.com/p/google-api-java-client/source/browse/?repo=samples&name=default</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/09/01/2014-09-01-hello-blog/" rel="prev" title="我的博客今天开通了……">
+                  <i class="fa fa-chevron-left"></i> 我的博客今天开通了……
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/09/03/2014-09-03-java-ikanalyer/" rel="next" title="中文分词器IKAnalyzer简单说明">
+                  中文分词器IKAnalyzer简单说明 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
