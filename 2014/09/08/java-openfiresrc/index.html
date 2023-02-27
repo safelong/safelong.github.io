@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="openfire源代码编译和问题解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openfire源代码编译">
+<meta property="og:url" content="http://blog.safelong.top/2014/09/08/java-openfiresrc/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="openfire源代码编译和问题解决">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image9.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image10.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image11.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image12.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image13.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image14.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image15.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image16.png">
+<meta property="og:image" content="http://blog.safelong.top/images/Openfire/Image17.png">
+<meta property="article:published_time" content="2014-09-08T21:49:00.000Z">
+<meta property="article:modified_time" content="2023-02-24T02:36:31.054Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="openfire">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.safelong.top/images/Openfire/Image9.png">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2014/09/08/java-openfiresrc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2014/09/08/java-openfiresrc/","path":"2014/09/08/java-openfiresrc/","title":"openfire源代码编译"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>openfire源代码编译 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2014/09/08/java-openfiresrc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="openfire源代码编译 | Safelong的大杂烩">
+      <meta itemprop="description" content="openfire源代码编译和问题解决">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          openfire源代码编译
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-09 05:49:00" itemprop="dateCreated datePublished" datetime="2014-09-09T05:49:00+08:00">2014-09-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-24 10:36:31" itemprop="dateModified" datetime="2023-02-24T10:36:31+08:00">2023-02-24</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">openfire源代码编译和问题解决</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>##准备源文件<br>首先，将下载的源代码压缩包解压出来的 openfire_src 目录 copy 至 eclipse 的 workspace 下面。</p>
+<p>把 openfire_src\build\eclipse 目录下的文件夹setting、文件classpth、文件project全部copy到 openfire_src\ 目录下，</p>
+<p>然后把openfire_src\classpth、openfire_src\project修改成Eclipse工程配置文件格式：</p>
+<pre><code> openfire_src\.classpath
+ openfire_src\.project 、
+</code></pre>
+<p>（如果无法修改文件名，copy任一现有项目的文件后修改其内容亦可，或者 cmd 内使用 move 命令修改）。</p>
+<p>##导入工程&amp;解决编译问题<br>然后打开Eclipse，选择 File –&gt; Import… –&gt; Existing Projects into Workspace  选择 openfire_src 目录导入即可。</p>
+<p>自动编译是可能发生错误：</p>
+<p><img src="/images/Openfire/Image9.png"></p>
+<p>需要从 classpath 里面把对 bouncycastle.jar 的依赖删除，然后追加以下几个 jar 到 classpath</p>
+<p>（文件都在 \openfire_src\build\lib\dist\）：</p>
+<p><img src="/images/Openfire/Image10.png"></p>
+<p>这个主要是因为 openfire 新版本对 bouncycastle 的依赖版本升级到了 1.49。</p>
+<p>接下来如果项目编译后产生编译错误，主要是缺少 coherence 相应的包，可从官网下载以下文件（需登录。CSDN 上也有）：</p>
+<pre><code> coherence.jar
+ coherence-work.jar
+</code></pre>
+<p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html">http://www.oracle.com/technetwork/middleware/coherence/downloads/index.html</a></p>
+<p>将文件放入 openfire_src\src\plugins\clustering\lib 目录，然后加入 classpath：</p>
+<p><img src="/images/Openfire/Image11.png"></p>
+<p>此外还需要 tangosol.jar ，可从 CSDN 下载，如上放入同一目录并添加到 classpath。</p>
+<p>接下来如果报错找不到：org.eclipse.jetty.jmx，则需要把如下 jetty-jmx.jar 加入到 classpath：</p>
+<p><img src="/images/Openfire/Image12.png"></p>
+<p>如果报错 org.apache.mina.integration 找不到，则需要同样添加以下文件到 classpath：</p>
+<pre><code>  \openfire_src\build\lib\merge\mina-integration-jmx.jar
+</code></pre>
+<p>如果 SipCommRouter，SipManager 报错说有些 abstract 方法没实装，可以让 eclipse 自动修复即可。</p>
+<p>最后在 SipManager 中 line 452 还有一个错：Unhandled exception type InvalidArgumentException</p>
+<p>只要使用 eclipse 修复，自动加一个 throw 声明即可。</p>
+<p>至此，编译 OK。</p>
+<p>##生成目标文件<br>然后可以使用 <strong>Ant 来生成目标文件</strong>：</p>
+<p><img src="/images/Openfire/Image13.png"></p>
+<p>会在 &#x2F;openfire_src&#x2F; 的目录下生成两个新的文件夹：target 和 work 。</p>
+<p>在Build Path配置中把以下三个文件夹添加到 Source 中：</p>
+<pre><code> /openfire_src/src/i18n 
+ /openfire_src/src/resources/jar
+ /openfire_src/build/lib/dist
+</code></pre>
+<p><img src="/images/Openfire/Image14.png"></p>
+<p>注意追加这个以后需要重新编译，Ant 一下整个 project，否则下面 Run 的时候控制台可能会报错：</p>
+<pre><code> Can&#39;t find bundle for base name openfire_i18n, locale en
+</code></pre>
+<p>##配置启动参数<br>最后需要<strong>配置启动参数</strong>：</p>
+<p>选择Run –&gt; Run Configurations… 左边的Java Application，单击右键，选择 New，创建一个，</p>
+<p>然后设定 project 和 Main Class：</p>
+<p><img src="/images/Openfire/Image15.png"></p>
+<p>需要设置 VM 参数：</p>
+<p><img src="/images/Openfire/Image16.png"></p>
+<p>设置 Common 属性：</p>
+<p><img src="/images/Openfire/Image17.png"></p>
+<p>然后即可运行成功，输出窗口显示：</p>
+<pre><code>Openfire 3.9.1 [Mar 6, 2014 2:27:11 PM]
+Admin console listening at http://127.0.0.1:9090
+</code></pre>
+<p>然后在浏览器输入：<a target="_blank" rel="noopener" href="http://127.0.0.1:9090/">http://127.0.0.1:9090</a> 即可访问。</p>
+<p>要注意，如果访问前有以前启动 openfire 失败的 javaw 进程存在，</p>
+<p>或者以前开启着别的 openfire 程序（可能是编译 openfire src 前执行的 exe），</p>
+<p>那么访问上述网站可能会出现 500 错误。此时需要把关联的 process 都结束掉再试即可。</p>
+<hr>
+<p>####参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.micmiu.com/opensource/openfire/openfire-src-config/">http://www.micmiu.com/opensource/openfire/openfire-src-config/</a></li>
+<li><a target="_blank" rel="noopener" href="http://gao-xianglong.iteye.com/blog/1944234">http://gao-xianglong.iteye.com/blog/1944234</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_414cc36d0101fmqo.html">http://blog.sina.com.cn/s/blog_414cc36d0101fmqo.html</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/openfire/" rel="tag"># openfire</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/09/05/database-foreignkey-/" rel="prev" title="Mysql中查找所有外键">
+                  <i class="fa fa-chevron-left"></i> Mysql中查找所有外键
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/09/11/java-springmvc-filter/" rel="next" title="Spring MVC中各个filter的用法">
+                  Spring MVC中各个filter的用法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

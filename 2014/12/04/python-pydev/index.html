@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="eclipse+pydev 安装和配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eclipse+pydev 安装和配置">
+<meta property="og:url" content="http://blog.safelong.top/2014/12/04/python-pydev/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="eclipse+pydev 安装和配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.safelong.top/images/python/installsoftware.jpg">
+<meta property="og:image" content="http://blog.safelong.top/images/python/pydev2.jpg">
+<meta property="og:image" content="http://blog.safelong.top/images/python/pydev3.jpg">
+<meta property="og:image" content="http://blog.safelong.top/images/python/pydev4.jpg">
+<meta property="og:image" content="http://blog.safelong.top/images/python/pydev5.jpg">
+<meta property="article:published_time" content="2014-12-04T05:49:12.000Z">
+<meta property="article:modified_time" content="2023-02-23T07:54:33.000Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pydev">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.safelong.top/images/python/installsoftware.jpg">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2014/12/04/python-pydev/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2014/12/04/python-pydev/","path":"2014/12/04/python-pydev/","title":"eclipse+pydev 安装和配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>eclipse+pydev 安装和配置 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2014/12/04/python-pydev/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="eclipse+pydev 安装和配置 | Safelong的大杂烩">
+      <meta itemprop="description" content="eclipse+pydev 安装和配置">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          eclipse+pydev 安装和配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-12-04 13:49:12" itemprop="dateCreated datePublished" datetime="2014-12-04T13:49:12+08:00">2014-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-23 15:54:33" itemprop="dateModified" datetime="2023-02-23T15:54:33+08:00">2023-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">eclipse+pydev 安装和配置</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>在安装 PyDev 之前，要保证您已经安装了 Java 1.4 或更高版本、Eclipse 以及 Python。接下来，开始安装 PyDev 插件。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>打开Eclipse，找到Help菜单栏，进入Install New Software…选项。</p>
+<p><img src="/images/python/installsoftware.jpg"></p>
+<p>点击work with:输入框的旁边点击Add…，Name可以随便是什么，我输入的是PyDev，Location是<a target="_blank" rel="noopener" href="http://pydev.sourceforge.net/updates%E3%80%82%E7%82%B9%E5%87%BBOK%E3%80%82">http://pydev.sourceforge.net/updates。点击OK。</a></p>
+<p><img src="/images/python/pydev2.jpg"></p>
+<p>等待一下，便可以在选择栏里看到各个选项。<br>选择PyDev，然后一路Next，进入安装路径选择界面，使用默认设置，然后 Finish。Eclipse将下载 PyDev，可以从 Eclipse任务栏中看到下载的进度。PyDev安装好后，需要重启Eclipse。</p>
+<p><img src="/images/python/pydev3.jpg"></p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>PyDev安装好之后，需要配置解释器。在 Eclipse 菜单栏中，选择Window &gt; Preferences &gt; Pydev &gt; Interpreter – Python，在此配置 Python。首先需要添加已安装的解释器。</p>
+<p>我使用的是Python3.x版本，Python安装在C:\Python34 路径下。单击 New，进入对话框。Interpreter Name可以随便命名，Interpreter Executable选择Python解释器python.exe。</p>
+<p><img src="/images/python/pydev4.jpg"></p>
+<p>点击OK后跳出一个有很多复选框的窗口，选择需要加入SYSTEM pythonpath的选项，点击Ok。全部选择就可以了！</p>
+<p><img src="/images/python/pydev5.jpg"></p>
+<p>然后在Python Interpreters的窗口，再次点击OK，即完成了Python解释器的配置。</p>
+<p>到此PyDev就已经完成了配置，可以使用Eclipse开始编写Python。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/pydev/" rel="tag"># pydev</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/11/10/web-gaode_API/" rel="prev" title="高德地图API试用">
+                  <i class="fa fa-chevron-left"></i> 高德地图API试用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/12/04/python-install/" rel="next" title="windows环境下python的安装和配置">
+                  windows环境下python的安装和配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

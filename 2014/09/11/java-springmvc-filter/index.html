@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Spring MVC中各个filter的用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring MVC中各个filter的用法">
+<meta property="og:url" content="http://blog.safelong.top/2014/09/11/java-springmvc-filter/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="Spring MVC中各个filter的用法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.safelong.top/images/filter/1.jpg">
+<meta property="og:image" content="http://blog.safelong.top/images/filter/2.jpg">
+<meta property="article:published_time" content="2014-09-11T05:49:12.000Z">
+<meta property="article:modified_time" content="2023-02-23T07:54:33.000Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="springMvc">
+<meta property="article:tag" content="filter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.safelong.top/images/filter/1.jpg">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2014/09/11/java-springmvc-filter/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2014/09/11/java-springmvc-filter/","path":"2014/09/11/java-springmvc-filter/","title":"Spring MVC中各个filter的用法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Spring MVC中各个filter的用法 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2014/09/11/java-springmvc-filter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Spring MVC中各个filter的用法 | Safelong的大杂烩">
+      <meta itemprop="description" content="Spring MVC中各个filter的用法">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring MVC中各个filter的用法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-11 13:49:12" itemprop="dateCreated datePublished" datetime="2014-09-11T13:49:12+08:00">2014-09-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-23 15:54:33" itemprop="dateModified" datetime="2023-02-23T15:54:33+08:00">2023-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Spring MVC中各个filter的用法</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>###过滤器相关类的结构<br>spring mvc的org.springframework.web.filter包下的Java文件如下：</p>
+<p><img src="/images/filter/1.jpg"></p>
+<p>类的结构如下：</p>
+<p><img src="/images/filter/2.jpg"></p>
+<p>###AbstractRequestLoggingFilter及其子类 </p>
+<p>AbstractRequestLoggingFilter类定义了两个方法beforeRequest和afterRequest分别用于设定过滤前后执行的操作。</p>
+<p>它有三个子类，分别是CommonsRequestLoggingFilter、ServletContextRequestLoggingFilter和Log4jNestedDiagnosticContextFilter，这三个子类分别实现了各自的beforeRequest和afterRequest。</p>
+<p>其中，CommonsRequestLoggingFilter在过滤前后分别打印出一段debug的信息；</p>
+<p>ServletContextRequestLoggingFilter在过滤前后分别向日志文件中写入一段日志信息，日志文件可由log4j.properties等指定；</p>
+<p>Log4jNestedDiagnosticContextFilter则将日志信息存储到NDC中，NDC采用了一个类似栈的机制来push和pot上下文信息，每一个线程都独立地储存上下文信息，比如说一个servlet就可以针对 每一个request创建对应的NDC，储存客户端地址等信息。</p>
+<p>###CharacterEncodingFilter<br>该过滤器是配置编码格式的，在web.xml中设置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">  &lt;filter-name&gt;springCharacterEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">  &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;</span><br><span class="line">  &lt;init-param&gt;</span><br><span class="line">     &lt;param-name&gt;forceEncoding&lt;/param-name&gt;</span><br><span class="line">     &lt;param-value&gt;true&lt;/param-value&gt;</span><br><span class="line">  &lt;/init-param&gt;</span><br><span class="line">  &lt;init-param&gt;</span><br><span class="line">     &lt;param-name&gt;encoding&lt;/param-name&gt;</span><br><span class="line">     &lt;param-value&gt;UTF-8&lt;/param-value&gt;</span><br><span class="line">  &lt;/init-param&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;springCharacterEncodingFilter&lt;/filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>###HiddenHttpMethodFilter<br>html中form表单只支持GET与POST请求，而DELETE、PUT等method并不支持，spring3添加了一个过滤器，可以将这些请求转换为标准的http方法，使得支持GET、POST、PUT与DELETE请求。</p>
+<p>可以配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;HiddenHttpMethodFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.springframework.web.filter.HiddenHttpMethodFilter&lt;/filter-class&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;methodParam&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;_method_&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;HiddenHttpMethodFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在页面的form表单中设置method为Post，并添加一个如下的隐藏域：</p>
+<pre><code>&lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;put&quot; /&gt;
+</code></pre>
+<p>查看HiddenHttpMethodFilter源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException &#123;</span><br><span class="line">        String paramValue = request.getParameter(methodParam);</span><br><span class="line">        if(&quot;POST&quot;.equals(request.getMethod()) &amp;&amp; StringUtils.hasLength(paramValue)) &#123;</span><br><span class="line">            String method = paramValue.toUpperCase(Locale.ENGLISH);</span><br><span class="line">            HttpServletRequest wrapper = new HttpMethodRequestWrapper(request, method);</span><br><span class="line">            filterChain.doFilter(wrapper, response);</span><br><span class="line">        &#125; else</span><br><span class="line">        &#123;</span><br><span class="line">            filterChain.doFilter(request, response);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 由源码可以看出，filter只对Post方法进行过滤，且需要添加参数名为_method的隐藏域，也可以设置其他参数名，比如想设置为_method_，可以在HiddenHttpMethodFilter配置类中设置初始化参数： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">     &lt;filter-name&gt;HiddenHttpMethodFilter&lt;/filter-name&gt;</span><br><span class="line">     &lt;filter-class&gt;org.springframework.web.filter.HiddenHttpMethodFilter&lt;/filter-class&gt;</span><br><span class="line">     &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;methodParam&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;_method_&lt;/param-value&gt;</span><br><span class="line">     &lt;/init-param&gt;</span><br><span class="line">&lt;/filter&gt; </span><br></pre></td></tr></table></figure>
+
+<p>###HttpPutFormContentFilter<br>由HiddenHttpMethodFilter可知，html中的form的method值只能为post或get，</p>
+<p>我们可以通过HiddenHttpMethodFilter获取put表单中的参数键值对，而在Spring3中获取put表单的参数键值对还有另一种方法，即使用HttpPutFormContentFilter过滤器。</p>
+<p>HttpPutFormContentFilter过滤器的作为就是获取put表单的值，并将之传递到Controller中标注了method为RequestMethod.put的方法中。</p>
+<p>与HiddenHttpMethodFilter不同，在form中不用添加参数名为_method的隐藏域，且method不必是post，直接写成put，但该过滤器只能接受enctype值为application&#x2F;x-www-form-urlencoded的表单，</p>
+<p>也就是说，在使用该过滤器时，form表单的代码必须如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;&quot; method=&quot;put&quot; enctype=&quot;application/x-www-form-urlencoded&quot;&gt;  </span><br><span class="line">XXXX </span><br><span class="line">&lt;/form&gt;  </span><br></pre></td></tr></table></figure>
+
+<p>配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">   &lt;filter-name&gt;httpPutFormcontentFilter&lt;/filter-name&gt;</span><br><span class="line">   &lt;filter-class&gt;org.springframework.web.filter.HttpPutFormContentFilter&lt;/filter-class&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;httpPutFormContentFilter&lt;/filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>###ShallowEtagHeaderFilter</p>
+<p>ShallowEtagHeaderFilter是spring提供的支持ETag的一个过滤器，所谓ETag是指被请求变量的实体值，是一个可以与Web资源关联的记号，而Web资源可以是一个Web页，也可以是JSON或XML文档，服务器单独负责判断记号是什么及其含义，并在HTTP响应头中将其传送到客户端，以下是服务器端返回的格式：</p>
+<pre><code>ETag:&quot;50b1c1d4f775c61:df3&quot;
+</code></pre>
+<p>客户端的查询更新格式是这样的：</p>
+<pre><code>If-None-Match : W / &quot;50b1c1d4f775c61:df3&quot;  
+</code></pre>
+<p>   如果ETag没改变，则返回状态304然后不返回，这也和Last-Modified一样。</p>
+<p>   ShallowEtagHeaderFilter会将JSP等的内容缓存，生成MD5的key，然后在response中作为Etage的header返回给客户端。下次客户端对相同的资源（或者说相同的url）发出请求时，客户端会将之前生成的key作为If-None-Match的值发送到server端。 Filter会客户端传来的值和服务器上的做比较，如果相同，则返回304；否则，将发送新的内容到客户端。</p>
+<p>查看ShallowEtagHeaderFilter的源码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException&#123;</span><br><span class="line">  ShallowEtagResponseWrapper responseWrapper = new ShallowEtagResponseWrapper(response, null);</span><br><span class="line">  filterChain.doFilter(request, responseWrapper);</span><br><span class="line">  // 由此可知，服务器仍会处理请求</span><br><span class="line">  byte[] body = responseWrapper.toByteArray();</span><br><span class="line">  int statusCode = responseWrapper.getStatusCode();</span><br><span class="line"> </span><br><span class="line">  if (isEligibleForEtag(request, responseWrapper, statusCode, body)) &#123;</span><br><span class="line">    String responseETag = generateETagHeaderValue(body);</span><br><span class="line">    response.setHeader(HEADER_ETAG, responseETag);</span><br><span class="line"> </span><br><span class="line">    String requestETag = request.getHeader(HEADER_IF_NONE_MATCH);</span><br><span class="line">    if (responseETag.equals(requestETag)) &#123;</span><br><span class="line">      if (this.logger.isTraceEnabled()) &#123;</span><br><span class="line">        this.logger.trace(&quot;ETag [&quot; + responseETag + &quot;] equal to If-None-Match, sending 304&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      response.setStatus(304);</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">      if (this.logger.isTraceEnabled()) &#123;</span><br><span class="line">        this.logger.trace(&quot;ETag [&quot; + responseETag + &quot;] not equal to If-None-Match [&quot; + requestETag + &quot;], sending normal response&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      copyBodyToResponse(body, response);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  else &#123;</span><br><span class="line">    if (this.logger.isTraceEnabled()) &#123;</span><br><span class="line">      this.logger.trace(&quot;Response with status code [&quot; + statusCode + &quot;] not eligible for ETag&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    copyBodyToResponse(body, response);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由源码可知，ShallowEtagHeaderFilter只能根据结果判断是否重新向客户端发送数据，并不会不处理请求，因此节省带宽，而不能提高服务器性能。</p>
+<p>配置ShallowEtagHeaderFilter的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;  </span><br><span class="line">   &lt;filter-name&gt;shallowEtagHeaderFilter&lt;/filter-name&gt;  </span><br><span class="line">   &lt;filter-class&gt;org.springframework.web.filter.ShallowEtagHeaderFilter&lt;/fliter-class&gt;  </span><br><span class="line">&lt;/filter&gt;  </span><br><span class="line">&lt;filter-mapping&gt;  </span><br><span class="line">   &lt;filter-name&gt;shallowEtagHeaderFilter&lt;/filter-name&gt;  </span><br><span class="line">   &lt;servlet-name&gt;spring&lt;/servlet-name&gt;  </span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>###RequestContextFilter<br>这是在Spring2.0时添加的类，通过LocaleContextHolder和RequestContextHolder把Http request对象基于LocalThread绑定到请求提供服务的线程上。现在一般使用DispatcherServlet这个中央分发器。现在RequestContextFilter过滤器主要用于第三方的Servlet，如JSF的FacesServlet。在Spring2.5之前都是使用该过滤器配置。</p>
+<p>配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;  </span><br><span class="line">    &lt;filter-name&gt;RequestContextFilter&lt;/filter-name&gt;  </span><br><span class="line">    &lt;filter-class&gt;org.springframework.web.filter.RequestContextFilter&lt;/filter-class&gt;  </span><br><span class="line">&lt;/filter&gt;  </span><br><span class="line">&lt;filter-mapping&gt;  </span><br><span class="line">    &lt;filter-name&gt;RequestContextFilter&lt;/filter-name&gt;  </span><br><span class="line">    &lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;  </span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>###DelegatingFilterProxy</p>
+<p>该类其实并不能说是一个过滤器，它的原型是FilterToBeanProxy，即将Filter作为spring的bean，由spring来管理。该类提供了在web.xml和application context之间的联系。</p>
+<pre><code>Proxy for a standard Servlet 2.3 Filter, delegating to a Spring-managed bean that implements the Filter interface. 
+</code></pre>
+<p>有以下几个参数可以设置：</p>
+<ol>
+<li>contextAttribute，使用委派Bean的范围，其值必须从org.springframework.context.ApplicationContext.WebApplicationContext中取得，默认值是session；其他可选的有request、globalSession和application</li>
+<li>targetFilterLifecycle，是否调用Filter的init和destroy方法，默认为false。</li>
+<li>targetBeanName，被代理的过滤器的bean的名字，该bean的类必须实现Filter接口。</li>
+</ol>
+<p>在web.xml中配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">   &lt;filter-name&gt;testFilter&lt;/filter-name&gt;</span><br><span class="line">   &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;</span><br><span class="line">   &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;targetBeanName&lt;/param-name&gt;</span><br><span class="line">      &lt;param-value&gt;spring-bean-name&lt;/param-value&gt;</span><br><span class="line">   &lt;/init-param&gt;</span><br><span class="line">   &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;contextAttribute&lt;/param-name&gt;</span><br><span class="line">     &lt;param-value&gt;session&lt;/param-value&gt;</span><br><span class="line">   &lt;/init-param&gt;</span><br><span class="line">   &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;targetFilterLifecycle&lt;/param-name&gt;</span><br><span class="line">      &lt;param-value&gt;false&lt;/param-value&gt;</span><br><span class="line">   &lt;/init-param&gt;</span><br><span class="line">&lt;/filter&gt;        </span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;testFilter&lt;/filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>testBean是被spring容器管理的对象，对象的类实现了Filter接口。或者可以不用配置这个参数，这样spring容器中所有实现了Filter接口的类都被代理，实际就是把Servlet容器中的filters同spring容器中的bean关联起来，方便spring进行管理。</p>
+<p>如果不配置DelegatingFilterProxy，则由于filter比bean先加载，也就是spring会先加载filter指定的类到container中，这样filter中注入的spring bean就为null了。如果将filter中加入DelegatingFilterProxy类，”targetFilterLifecycle”指明作用于filter的所有生命周期。原理是，DelegatingFilterProxy类是一个代理类，所有的请求都会首先发到这个filter代理，然后再按照”filter-name”委派到spring中的这个bean。</p>
+<p>此外，spring bean实现了Filter接口，但默认情况下，是由spring容器来管理其生命周期的(不是由tomcat这种服务器容器来管理)。如果设置”targetFilterLifecycle”为True，则spring来管理Filter.init()和Filter.destroy()；若为false，则这两个方法失效。</p>
+<p>在Spring Security中就是使用该类进行设置。即在web.xml中配置该过滤器，然后在spring security相关的配置中设置相应的过滤器bean。但是该类是spring-web包下的类，不属于Spring Security类。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/springMvc/" rel="tag"># springMvc</a>
+              <a href="/tags/filter/" rel="tag"># filter</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/09/08/java-openfiresrc/" rel="prev" title="openfire源代码编译">
+                  <i class="fa fa-chevron-left"></i> openfire源代码编译
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/09/12/java-springmvc-exception/" rel="next" title="SpringMVC异常处理机制详解">
+                  SpringMVC异常处理机制详解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

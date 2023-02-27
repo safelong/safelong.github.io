@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用Vagrant在Windows下部署开发环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Vagrant在Windows下部署开发环境">
+<meta property="og:url" content="http://blog.safelong.top/2014/10/16/other-vagrant/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="使用Vagrant在Windows下部署开发环境">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-10-16T05:49:12.000Z">
+<meta property="article:modified_time" content="2023-02-23T04:56:48.000Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="Vagrant">
+<meta property="article:tag" content="虚拟化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2014/10/16/other-vagrant/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2014/10/16/other-vagrant/","path":"2014/10/16/other-vagrant/","title":"使用Vagrant在Windows下部署开发环境"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用Vagrant在Windows下部署开发环境 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2014/10/16/other-vagrant/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用Vagrant在Windows下部署开发环境 | Safelong的大杂烩">
+      <meta itemprop="description" content="使用Vagrant在Windows下部署开发环境">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Vagrant在Windows下部署开发环境
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-10-16 13:49:12" itemprop="dateCreated datePublished" datetime="2014-10-16T13:49:12+08:00">2014-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-23 12:56:48" itemprop="dateModified" datetime="2023-02-23T12:56:48+08:00">2023-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">使用Vagrant在Windows下部署开发环境</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>做Web开发少不了要在本地搭建好开发环境，虽然说目前各种脚本都有对应的Windows版，甚至是一键安装包，但很多时候和Windows环境的相性并不是那么好，各麻烦的问题是实际部署的环境通常是Linux，常常还要面临着开发和部署环境不一致，上线前还要大量的调试。更要命的是，如果有很多机器需要装的话，那就真是一个灾难了。</p>
+<p>Windows下玩Linux少不了虚拟机，但装系统依旧是相当费事。在现在什么都在自动化的今天，Vagrant就是这么一个神器，基于Ruby开发，使用开源 VirtualBox 作为虚拟化支持，可以轻松的跨平台部署。</p>
+<p>今天试着把几台机器的环境都换成Vagrant，很爽很顺畅，于是就试着整理了一下使用小结：</p>
+<p>目前所选用的是当前的最新版本Vagrant 1.6.5 （对应的Vagrantfile V2版），VirtualBox 使用的是 4.3.18</p>
+<p>##准备工作：</p>
+<ul>
+<li><p>下载安装 VirtualBox ：<a target="_blank" rel="noopener" href="https://www.virtualbox.org/">https://www.virtualbox.org/</a></p>
+</li>
+<li><p>下载安装 Vagrant ：<a target="_blank" rel="noopener" href="http://www.vagrantup.com/downloads.html">http://www.vagrantup.com/downloads.html</a></p>
+</li>
+<li><p>下载需要使用的 box ：</p>
+</li>
+</ul>
+<p>官方提供的范例：<a target="_blank" rel="noopener" href="http://files.vagrantup.com/precise32.box">http://files.vagrantup.com/precise32.box</a></p>
+<p>还可以在 <a target="_blank" rel="noopener" href="http://www.vagrantbox.es/">http://www.vagrantbox.es/</a> 这里下载更多不同系统甚至是已经配置好环境直接可以用的box，虽然可以直接在Vagrant直接使用网址，由Vagrant自动下载安装，但是考虑到网络情况，还是建议自行先下载好。</p>
+<p>由于习惯用CentOS，于是我就下了CentOS 6.3 x86_64 minimal，这个Box根据个人情况进行选择即可。</p>
+<p>##设置环境：</p>
+<p>安装完成并且重启好系统之后就可以开始设置环境了。</p>
+<p>首先在本地创建好工作目录，并在命令行下切换到对应目录</p>
+<pre><code>vagrant box add base CentOS-6.3-x86_64-minimal.box
+</code></pre>
+<p>base 表示指定默认的box，也可以为box指定名称，比如 centos63 ，使用base时，之后可以直接使用 vagrant init 进行初始化，如果自行指定名称，则初始化的时候需要指定box的名称。</p>
+<p>CentOS-6.3-x86_64-minimal.box 是box对应的文件名，这里可以是本地保存box的路径，也可以是可以下载box的网址，如果是网址的话，Vagrant会自动启动下载。</p>
+<pre><code>[vagrant] Downloading with Vagrant::Downloaders::File...
+[vagrant] Copying box to temporary location...
+[vagrant] Extracting box...
+[vagrant] Verifying box...
+[vagrant] Cleaning up downloaded box...
+</code></pre>
+<p>设置好box之后，在当前工作目录运行</p>
+<pre><code>vagrant init
+</code></pre>
+<p>生成对应的Vagrantfile。通过文本编辑器打开Vagrantfile可以进行一些进一步的常用配置：</p>
+<p>##网络配置：</p>
+<p>Vagrant的网络有三种模式</p>
+<p>1、较为常用是端口映射，就是将虚拟机中的端口映射到宿主机对应的端口直接使用 ，在Vagrantfile中配置：</p>
+<pre><code>config.vm.network :forwarded_port, guest: 80, host: 8080
+</code></pre>
+<p>guest: 80 表示虚拟机中的80端口， host: 8080 表示映射到宿主机的8080端口。</p>
+<p>2、如果需要自己自由的访问虚拟机，但是别人不需要访问虚拟机，可以使用private_network，并为虚拟机设置IP ，在Vagrantfile中配置：</p>
+<pre><code>config.vm.network :private_network, ip: &quot;192.168.1.104&quot;
+</code></pre>
+<p>192.168.1.104 表示虚拟机的IP，多台虚拟机的话需要互相访问的话，设置在相同网段即可</p>
+<p>3、如果需要将虚拟机作为当前局域网中的一台计算机，由局域网进行DHCP，那么在Vagrantfile中配置：</p>
+<pre><code>config.vm.network :public_network
+</code></pre>
+<p>##目录映射：</p>
+<p>既然是开发环境，那么开发工作肯定还是需要在本地完成，而不是都要进到虚拟机中去完成，虚拟机就好好在后台运行服务就好了，不然就本末倒置了，所以这里就需要使用目录映射功能，将本地的目录映射到虚拟机的对应目录。</p>
+<p>默认情况下，当前的工作目录，会被映射到虚拟机的 &#x2F;vagrant 目录，当前目录下的文件可以直接在 &#x2F;vagrant 下进行访问，当然也可以在通过 ln 创建软连接，如</p>
+<pre><code>ln -fs /vagrant/wwwroot /var/www
+</code></pre>
+<p>来进行目录映射，当然，从自动化配置的角度，能不进系统就不需要进系统，所以在Vagrant也可以进行目录映射的操作：</p>
+<pre><code>config.vm.synced_folder &quot;wwwroot/&quot;, &quot;/var/www&quot;
+</code></pre>
+<p>前面的参数 “wwwroot&#x2F;”  表示的是本地的路径，这里使用对于工作目录的相对路径，这里也可以使用绝对路径，比如： “d:&#x2F;www&#x2F;”</p>
+<p>后面的参数 “&#x2F;var&#x2F;www” 表示虚拟机中对应映射的目录。</p>
+<p>运行脚本：</p>
+<p>虽然不是必须，但是如果有需要在启动时运行一些脚本（环境的安装或者有些服务的启动需要在完成目录映射之后进行），可以编辑脚本，类似如下（摘自Vagrant Document）：</p>
+<pre><code>#!/usr/bin/env bash
+
+apt-get update
+apt-get install -y apache2
+rm -rf /var/www
+ln -fs /vagrant /var/www
+</code></pre>
+<p>保存在和Vagrantfile相同目录，文件名自取（如 boot.sh），然后在Vagrantfile中添加：</p>
+<pre><code>config.vm.provision :shell, :path =&gt; &quot;boot.sh&quot;
+</code></pre>
+<p> 当初次使用基本的设置都完成则之后，则可以使用 vagrant up 启动虚拟机</p>
+<pre><code>Bringing machine &#39;default&#39; up with &#39;virtualbox&#39; provider...
+[default] Setting the name of the VM...
+[default] Clearing any previously set forwarded ports...
+[default] Creating shared folders metadata..
+[default] Clearing any previously set network interfaces...
+[default] Preparing network interfaces based on configuration...
+[default] You are trying to forward to privileged ports (ports &lt; = 1024). Most operating systems restrict this to only privileged process (typicallyprocesses running as an administrative user). This is a warning in case
+the port forwarding doesn&#39;t work. If any problems occur, please try a port higher than 1024.
+[default] Forwarding ports...
+[default] -- 22 =&gt; 2222 (adapter 1)
+[default] -- 80 =&gt; 8080 (adapter 1)
+[default] Booting VM...
+[default] Waiting for VM to boot. This can take a few minutes.
+[default] VM booted and ready for use!
+[default] The guest additions on this VM do not match the installed version of VirtualBox! In most cases this is fine, but in rare cases it can cause things such as shared folders to not work properly. If you see shared folder errors, please update the guest additions within the virtual machine and reload your VM.
+ 
+</code></pre>
+<p>虚拟机启动之后则可以通过 vagrant ssh 联入虚拟机进行进一步的环境配置，或者软件安装相关的工作，在Windows系统下，并不能直接通过 vagrant ssh 连到虚拟机，需要使用 Putty，Xshell 等第三方工具进行连接</p>
+<p>连接的IP和端口根据网络环境配置的不同有所不同，如果是默认使用端口映射的话，一般是连接 本地的2222端口。</p>
+<p>登录的帐号密码均为 vagrant ，登录之后如果需要 su root ，密码也是 vagrant</p>
+<p>注：使用 vagrant ssh 时，会提示可以使用密钥进行登录，如果需要使用putty进行密钥登录的话，需要下载 puttygen 将 ssh 的密钥转换为 ppk 文件才能使用。</p>
+<p>登录ssh完成环境的配置，如果在开发环境中使用webserver（nginx&#x2F;apache）为了避免一些静态文件处理的问题，可能还需要进行一些额外的配置：Vagrant下共享目录静态文件(js&#x2F;jpg&#x2F;png等）“缓存”问题</p>
+<p>在不进入虚拟机的情况下，还可以使用下面的命令对 虚拟机进行管理：</p>
+<pre><code>vagrant up （启动虚拟机）
+vagrant halt （关闭虚拟机——对应就是关机）
+vagrant suspend （暂停虚拟机——只是暂停，虚拟机内存等信息将以状态文件的方式保存在本地，可以执行恢复操作后继续使用）
+vagrant resume （恢复虚拟机 —— 与前面的暂停相对应）
+vagrant destroy （删除虚拟机，删除后在当前虚拟机所做进行的除开Vagrantfile中的配置都不会保留）
+</code></pre>
+<p>当在启动Vagrant后，对于虚拟机有进行过安装环境相关的配置，如果并不希望写在Vagrant的启动shell里面每次都重新安装配置一遍，可以将当前配置好的虚拟机打包成box，</p>
+<pre><code>vagrant package --output NAME --vagrantfile FILE
+
+可选参数：
+ 
+--output NAME ： （可选）设置通过NAME来指定输出的文件名
+ 
+--vagrantfile FILE：（可选）可以将Vagrantfile直接封进box中
+</code></pre>
+<p>注：如果网络模式中使用 private_network 的话，在打包之前需要清除一下private_network的设置，避免不必要的错误：</p>
+<pre><code>sudo rm -f /etc/udev/rule.d/70-persistent-net.rules
+</code></pre>
+<p>制作完成之后直接将box文件拿到其他计算机上配置即可使用。</p>
+<blockquote>
+<p>更多信息可以参考官方文档：<a target="_blank" rel="noopener" href="http://docs.vagrantup.com/v2/">http://docs.vagrantup.com/v2/</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vagrant/" rel="tag"># Vagrant</a>
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag"># 虚拟化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/10/09/evaluating-360zhijian/" rel="prev" title="人”智键“，则无敌？--360智键试用">
+                  <i class="fa fa-chevron-left"></i> 人”智键“，则无敌？--360智键试用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/11/10/web-gaode_API/" rel="next" title="高德地图API试用">
+                  高德地图API试用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
