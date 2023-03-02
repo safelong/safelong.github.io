@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.safelong.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="HomeAssistant，简称 HA，是一款基于 Python 的智能家居开源系统，支持众多品牌的智能家居设备，可以轻松实现设备的语音控制、自动化等。 HACS是homeassistant的前端商店，就是主要用于页面美化以及个性化自定义的。HACA商店里面有小米的插件Xiaomi Miot Auto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="homeassistant及插件商店HACS安装">
+<meta property="og:url" content="http://blog.safelong.top/2023/03/01/homeassistant%E5%8F%8A%E6%8F%92%E4%BB%B6%E5%95%86%E5%BA%97HACS%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Safelong的大杂烩">
+<meta property="og:description" content="HomeAssistant，简称 HA，是一款基于 Python 的智能家居开源系统，支持众多品牌的智能家居设备，可以轻松实现设备的语音控制、自动化等。 HACS是homeassistant的前端商店，就是主要用于页面美化以及个性化自定义的。HACA商店里面有小米的插件Xiaomi Miot Auto">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-01T07:25:00.000Z">
+<meta property="article:modified_time" content="2023-03-02T07:58:30.741Z">
+<meta property="article:author" content="川在金陵">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="armbian">
+<meta property="article:tag" content="home assistant">
+<meta property="article:tag" content="hacs">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.safelong.top/2023/03/01/homeassistant%E5%8F%8A%E6%8F%92%E4%BB%B6%E5%95%86%E5%BA%97HACS%E5%AE%89%E8%A3%85/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.safelong.top/2023/03/01/homeassistant%E5%8F%8A%E6%8F%92%E4%BB%B6%E5%95%86%E5%BA%97HACS%E5%AE%89%E8%A3%85/","path":"2023/03/01/homeassistant及插件商店HACS安装/","title":"homeassistant及插件商店HACS安装"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>homeassistant及插件商店HACS安装 | Safelong的大杂烩</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Safelong的大杂烩</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85home-assistant"><span class="nav-number">2.</span> <span class="nav-text">安装home assistant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85HACS"><span class="nav-number">3.</span> <span class="nav-text">安装HACS</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="川在金陵"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">川在金陵</p>
+  <div class="site-description" itemprop="description">中年男人的无聊分享</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.safelong.top/2023/03/01/homeassistant%E5%8F%8A%E6%8F%92%E4%BB%B6%E5%95%86%E5%BA%97HACS%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="川在金陵">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Safelong的大杂烩">
+      <meta itemprop="description" content="中年男人的无聊分享">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="homeassistant及插件商店HACS安装 | Safelong的大杂烩">
+      <meta itemprop="description" content="HomeAssistant，简称 HA，是一款基于 Python 的智能家居开源系统，支持众多品牌的智能家居设备，可以轻松实现设备的语音控制、自动化等。 HACS是homeassistant的前端商店，就是主要用于页面美化以及个性化自定义的。HACA商店里面有小米的插件Xiaomi Miot Auto">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          homeassistant及插件商店HACS安装
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-01 15:25:00" itemprop="dateCreated datePublished" datetime="2023-03-01T15:25:00+08:00">2023-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-02 15:58:30" itemprop="dateModified" datetime="2023-03-02T15:58:30+08:00">2023-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">HomeAssistant，简称 HA，是一款基于 Python 的智能家居开源系统，支持众多品牌的智能家居设备，可以轻松实现设备的语音控制、自动化等。 HACS是homeassistant的前端商店，就是主要用于页面美化以及个性化自定义的。HACA商店里面有小米的插件Xiaomi Miot Auto</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>家里小米设备比较多，现在都是通过米家app来控制。由于使用的是远程网关，所以当网络断了，或者小米服务器挂了，米家app就失效了。小米也推出了本地网关，但是价格太贵。正好手上有移动魔百盒，也刷成了armbian系统，所以就想搭建一个本地网关，达到控制小米设备的目的。</p>
+<h2 id="安装home-assistant"><a href="#安装home-assistant" class="headerlink" title="安装home assistant"></a>安装home assistant</h2><p>直接用armbian软件中心安装，全程自动，默认是docker安装<br>软件中心说明：<br><a target="_blank" rel="noopener" href="https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/documents/armbian_software.md">https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/documents/armbian_software.md</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令：sudo armbian-software</span><br><span class="line">输入id：108</span><br></pre></td></tr></table></figure>
+<p>安装完成后，就会出现一个名为“	homeassistant”的容器，可以通过容器管理器portainer来查看和管理容器和镜像  </p>
+<p>docker安装默认的似乎host网络，这时就可以通过网页来访问homeassistant了。如果是桥接，就需要配置端口映射。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web页面访问地址 ip:8123</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="安装HACS"><a href="#安装HACS" class="headerlink" title="安装HACS"></a>安装HACS</h2><p>第一步完成后，会发现以下问题  </p>
+<ul>
+<li>配置-集成，里面并搜不到”Xiaomi Miot Auto“</li>
+<li>Home Assistant的首页侧边栏并没有HACA</li>
+</ul>
+<p>所以，这就需要我们安装HACA，目前网上的安装教程，基本走不下去，不是网络不通，就是手动安装很麻烦。<br>经过好几天的寻找，下面的教程可以用一行命令解决问题，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/hacs-china</span><br></pre></td></tr></table></figure>
+
+<p>HACS是一款优秀的 Home Assistant 集成商店，然而国人想要使用它下载插件或前端卡片却困难重重，主要原因就是国内的网络环境。 本项目使用了ghproxy.com和fastgit.org提供的Github镜像服务，可以让大家更快的下载商店里的插件。</p>
+<p><strong>使用命令行安装(推荐)</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget -O - https://hacs.vip/get | bash -</span><br><span class="line">如果上面的命令执行后卡住不动，或没有提示安装成功，请尝试下面的命令</span><br><span class="line"></span><br><span class="line">wget -O - https://hacs.vip/get | HUB_DOMAIN=ghproxy.com/github.com bash -</span><br><span class="line">如果是haos/hassio/supervisor版本的HA，可直接在宿主机或Terminal &amp; SSH加载项中执行上面的命令</span><br><span class="line">如果是core/docker版本的HA，需要ssh登陆宿主机后，并cd进入到HA配置目录再执行安装命令</span><br></pre></td></tr></table></figure>
+
+<p>**手动安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">点击这里下载安装包并解压 (如果下载不了请点这里或这里)</span><br><span class="line">通过samba/ftp进入HA配置目录，通常为以下目录：</span><br><span class="line">   /usr/share/hassio/homeassistant haos/hassio宿主机</span><br><span class="line">   /config haos/hassio的Samba或Terminal &amp; SSH加载项</span><br><span class="line">   $HOME/.homeassistant 以core方式安装的HA默认配置目录</span><br><span class="line">   docker安装的HA为-v参数后面映射的目录</span><br><span class="line">在HA配置目录下创建custom_components文件夹 (如果已有请忽略)</span><br><span class="line">在custom_components目录下创建hacs文件夹 (如果已有请删除重新创建)</span><br><span class="line">將解压出来的文件复制到刚创建的hacs文件夹</span><br><span class="line">重启HA</span><br><span class="line">添加HACS集成 (仅首次安装)</span><br></pre></td></tr></table></figure>
+
+<p>安装成功后，侧边栏就会出现HACS，点击去就可以搜索Xiaomi Miot Auto并安装了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/armbian/" rel="tag"># armbian</a>
+              <a href="/tags/home-assistant/" rel="tag"># home assistant</a>
+              <a href="/tags/hacs/" rel="tag"># hacs</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/27/%E5%B0%86hexo%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E4%B8%8A%E4%BC%A0%E5%88%B0gitee/" rel="prev" title="将hexo博客源码上传到gitee">
+                  <i class="fa fa-chevron-left"></i> 将hexo博客源码上传到gitee
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">川在金陵</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
